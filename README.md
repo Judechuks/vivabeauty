@@ -1,35 +1,69 @@
-## plpfinalproject: Vivabeauty
+# PLPFINALPROJECT: VIVABEAUTY
 
-The project contains the files for my final project for the scholarship I underwent at powerlearnproject academy, where I learnt software engineering.
+Final project for the scholarship I received from PowerLearnProject Academy, where I studied software engineering, are available in this repository. FEB2024 cohort (February 2024 through June 2024). This project showcases my understanding of Python, Django, Database, HTML, CSS, JavaScript, etc.
 
-### Dependencies
+---
 
-#### Virtual Environment
+#### TABLE OF CONTENT
 
-Virtual environment to run django
+- [Table of Contents](#table-of-content)
+- [Motivation](#motivation)
+- [Link](#link)
+- [Features](#features)
+- [Dependencies and Technologies used](#dependencies-and-technologies-used)
 
-##### Installation:
+---
 
-`pip install virtualenv`
-<br />
-`virtualenv your_virtualenv_name`
-<br />
-or
-<br />
-`python -m venv your_virtualenv_name`
+## MOTIVATION
 
-#### Django
+- To demonstrate and use my knowledge and skills gained through the PowerLearnProject Academy scholarship.
+- To create an application that will solve and minimize the problem of unavailability of hair products and delivery of haircare services due to distance.
 
-High-level python web framework that enables rapid development of secure and maintainable websites.
+---
 
-##### Installation:
+## LINK
 
-`pip install django`
+[vivabeauty](https://vivabeauty.vercel.app)
 
-#### Pillow
+---
 
-Python library that adds image processing capabilities to Python interpreter
+## FEATURES
 
-##### Installation:
+- ### Landing page:
+  An overview of what the business offers
 
-`pip install pillow`
+---
+
+## DEPENDENCIES AND TECHNOLOGIES USED
+
+- ### Virtual Environment
+
+  Virtual environment to run django
+
+  #### Installation:
+
+  `pip install virtualenv`
+  <br />
+  `virtualenv your_virtualenv_name`
+  <br />
+  or
+  <br />
+  `python -m venv your_virtualenv_name`
+
+- ### Django
+
+  High-level python web framework that enables rapid development of secure and maintainable websites.
+
+  #### Installation:
+
+  `pip install django`
+
+- ### Pillow
+
+  Python library that adds image processing capabilities to Python interpreter
+
+  #### Installation:
+
+  `pip install pillow`
+
+---
