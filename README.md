@@ -8,22 +8,28 @@ The project contains the files for my final project for the scholarship I underw
 
 Virtual environment to run django
 
-Installation:
+###### Installation:
+
 `pip install virtualenv`
+<br />
 `virtualenv your_virtualenv_name`
+<br />
 or
+<br />
 `python -m venv your_virtualenv_name`
 
 #### Django
 
 High-level python web framework that enables rapid development of secure and maintainable websites.
 
-Installation:
+###### Installation:
+
 `pip install django`
 
 #### Pillow
 
 Python library that adds image processing capabilities to Python interpreter
 
-Installation:
+###### Installation:
+
 `pip install pillow`
