@@ -8,7 +8,7 @@ The project contains the files for my final project for the scholarship I underw
 
 Virtual environment to run django
 
-###### Installation:
+##### Installation:
 
 `pip install virtualenv`
 <br />
@@ -22,7 +22,7 @@ or
 
 High-level python web framework that enables rapid development of secure and maintainable websites.
 
-###### Installation:
+##### Installation:
 
 `pip install django`
 
@@ -30,6 +30,6 @@ High-level python web framework that enables rapid development of secure and mai
 
 Python library that adds image processing capabilities to Python interpreter
 
-###### Installation:
+##### Installation:
 
 `pip install pillow`
