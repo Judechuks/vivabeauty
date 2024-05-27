@@ -1,0 +1,26 @@
+/* custom variables */
+:root {
+  --purple-clr: purple;
+  --yellow-clr: yellow;
+  --pink-clr: pink;
+  --black-clr: #000;
+  --white-clr: #fff;
+  --shadow-lg: 0 0 14px rgba(255, 255, 255, 0.6);
+  --shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+  --transition-duration: 0.6s;
+  --transition-duration-sm: 0.3s;
+  --radius: 6px;
+  --padding: 40px;
+  --radius-sm: 4px;
+}
+
+/* CSS resets */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--pink-clr);
+}
