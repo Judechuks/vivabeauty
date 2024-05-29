@@ -2,7 +2,7 @@
 :root {
   --purple-clr: purple;
   --yellow-clr: yellow;
-  --pink-clr: pink;
+  --pink-clr: #e86ed6;
   --black-clr: #000;
   --white-clr: #fff;
   --shadow-lg: 0 0 14px rgba(0, 0, 0, 0.6);
@@ -40,9 +40,12 @@ a {
   background: var(--purple-clr);
   box-shadow: var(--shadow-lg);
 }
-header a {
+.header a {
   color: var(--white-clr);
-  font-size: 1.2rem;
+}
+.header ul {
+  margin: 0;
+  padding: 0;
 }
 .brand {
   font-family: "MonteCarlo", cursive;
@@ -53,13 +56,15 @@ header a {
 .nav-links {
   display: flex;
   gap: 5px;
+  font-size: 1.2rem;
 }
 .nav-links a {
   padding: 6px;
   text-transform: capitalize;
   transition: 0.4s;
 }
-.nav-links a:hover {
+.nav-links a:hover,
+.dropdown-sidemenu a:hover {
   color: var(--pink-clr);
 }
 /* side menu */
@@ -68,6 +73,36 @@ header a {
   gap: 20px;
   align-items: baseline;
 }
+
+.dropdown-sidemenu {
+  color: var(--white-clr);
+  font-size: 1.2rem;
+  position: relative;
+}
+.dropdown-sidemenu .user-profile:hover {
+  cursor: pointer;
+  color: var(--pink-clr);
+}
+.dropdown-sidemenu:hover ul {
+  display: block;
+}
+.dropdown-sidemenu .user-profile::after {
+  content: "\25BE";
+}
+.dropdown-sidemenu ul {
+  position: absolute;
+  width: 180px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--purple-clr);
+  padding: 10px;
+  display: none;
+}
+.dropdown-sidemenu li a {
+  font-size: 1rem;
+  display: block;
+}
+
 .side-menu .favorite,
 .side-menu .cart {
   position: relative;
