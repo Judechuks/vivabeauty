@@ -5,8 +5,8 @@
   --pink-clr: pink;
   --black-clr: #000;
   --white-clr: #fff;
-  --shadow-lg: 0 0 14px rgba(255, 255, 255, 0.6);
-  --shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+  --shadow-lg: 0 0 14px rgba(0, 0, 0, 0.6);
+  --shadow: 0 0 10px rgba(0, 0, 0, 0.4);
   --transition-duration: 0.6s;
   --transition-duration-sm: 0.3s;
   --radius: 6px;
@@ -23,4 +23,69 @@
 
 body {
   background: var(--pink-clr);
+  font-family: "Jost", sans-serif;
+}
+li {
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+}
+/*======= Header =======*/
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 2.8rem;
+  background: var(--purple-clr);
+  box-shadow: var(--shadow-lg);
+}
+header a {
+  color: var(--white-clr);
+  font-size: 1.2rem;
+}
+.brand {
+  font-family: "MonteCarlo", cursive;
+}
+.brand span {
+  color: var(--pink-clr);
+}
+.nav-links {
+  display: flex;
+  gap: 5px;
+}
+.nav-links a {
+  padding: 6px;
+  text-transform: capitalize;
+  transition: 0.4s;
+}
+.nav-links a:hover {
+  color: var(--pink-clr);
+}
+/* side menu */
+.side-menu {
+  display: flex;
+  gap: 20px;
+  align-items: baseline;
+}
+.side-menu .favorite,
+.side-menu .cart {
+  position: relative;
+  cursor: pointer;
+}
+.side-menu .fa {
+  font-size: 1.4rem;
+}
+.side-menu span {
+  background: red;
+  color: var(--white-clr);
+  font-size: 0.9rem;
+  border-radius: 50%;
+  width: 24px;
+  aspect-ratio: 1/1;
+  display: grid;
+  place-items: center;
+  position: absolute;
+  top: -10px;
+  right: -15px;
 }
