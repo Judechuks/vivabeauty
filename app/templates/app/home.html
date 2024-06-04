@@ -1,0 +1,27 @@
+<!-- inheriting the codes, links, etc from the index.html -->
+{% extends 'app/base.html' %}
+
+<!-- loading static files -->
+{% load static %}
+
+<!-- document title -->
+{% block title %}Viva Beauty Home{% endblock title %}
+
+<!-- banner block -->
+{% block banner %}
+<section class="banner">
+  <div class="content">
+    <h1>Welcome to Viva Beauty Home</h1>
+    <p>
+      Unlock Your Best Look at Viva Beauty Home – Meet Your Inner Beauty You've
+      Never Discovered and Unleash Your Radiance.
+    </p>
+    <a href="" class="btn">learn more</a>
+  </div>
+</section>
+{% endblock banner %}
+
+<!-- main-content block -->
+{% block main-content %}
+<h1>Welcome to Vivabeauty home</h1>
+{% endblock main-content %}
