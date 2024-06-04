@@ -31,12 +31,24 @@ li {
 a {
   text-decoration: none;
 }
+.btn {
+  text-decoration: none;
+  display: inline-block;
+  width: fit-content;
+  padding: 10px 20px;
+  background-color: var(--purple-clr);
+  color: var(--white-clr);
+}
+header,
+section,
+footer {
+  padding: 0.5rem 2.8rem;
+}
 /*======= Header =======*/
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 2.8rem;
   background: var(--purple-clr);
   box-shadow: var(--shadow-lg);
 }
@@ -67,13 +79,13 @@ a {
 .dropdown-sidemenu a:hover {
   color: var(--pink-clr);
 }
-/* side menu */
+/*---- side menu ----*/
 .side-menu {
   display: flex;
   gap: 20px;
   align-items: baseline;
 }
-
+/*---- dropdown menu----*/
 .dropdown-sidemenu {
   color: var(--white-clr);
   font-size: 1.2rem;
@@ -97,12 +109,14 @@ a {
   background: var(--purple-clr);
   padding: 10px;
   display: none;
+  z-index: 5;
 }
 .dropdown-sidemenu li a {
   font-size: 1rem;
   display: block;
 }
 
+/*---- favorite and cart ----*/
 .side-menu .favorite,
 .side-menu .cart {
   position: relative;
@@ -123,4 +137,27 @@ a {
   position: absolute;
   top: -10px;
   right: -15px;
+}
+
+/*======== Carousel ========*/
+.banner {
+  background: var(--pink-clr) url(../images/banner.png) no-repeat center/cover;
+  height: 89vh;
+  display: grid;
+  align-items: center;
+}
+.banner .content {
+  /* background-color: red; */
+  max-width: 600px;
+}
+.banner .content h1 {
+  font-weight: 600;
+  font-size: 2.5rem;
+}
+.banner .content p {
+  font-size: 1.3rem;
+  margin-block: 20px;
+}
+.banner .content .btn {
+  text-transform: uppercase;
 }
