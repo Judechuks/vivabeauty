@@ -58,8 +58,16 @@ footer {
   padding: 0.25rem 2.8rem;
 }
 section {
-  padding-block: 30px;
+  padding-block: 20px;
 }
+.section-title {
+  text-align: center;
+  text-transform: uppercase;
+}
+.section-title span {
+  color: var(--purple-clr);
+}
+
 /*======= Header =======*/
 .header {
   width: 100%;
@@ -187,6 +195,9 @@ section {
   display: flex;
   align-items: center;
   gap: 15px;
+}
+.about-us h1 span {
+  color: var(--purple-clr);
 }
 .about-us .col-1 {
   flex-basis: 45%;
