@@ -3,7 +3,6 @@
   --purple-clr: purple;
   --yellow-clr: yellow;
   --pink-clr: #e86ed6;
-  --pink-lucent: #e86ed6cf;
   --black-clr: #000;
   --white-clr: #fff;
   --shadow-lg: 0 0 14px rgba(0, 0, 0, 0.6);
@@ -39,17 +38,27 @@ a {
   width: fit-content;
   padding: 10px 20px;
   color: var(--white-clr);
+  text-transform: uppercase;
   background-color: var(--purple-clr);
   border: 1px solid var(--purple-clr);
   transition: var(--transition-duration);
 }
+.btn-outline:hover {
+  background-color: transparent;
+}
 h1 {
   font-size: 2.5rem;
+}
+p {
+  font-size: 1.2rem;
 }
 header,
 section,
 footer {
   padding: 0.25rem 2.8rem;
+}
+section {
+  padding-block: 30px;
 }
 /*======= Header =======*/
 .header {
@@ -152,7 +161,7 @@ footer {
   display: none;
 }
 
-/*======== Carousel ========*/
+/*======== Banner ========*/
 .banner {
   background: var(--pink-clr) url(../images/banner.png) no-repeat;
   color: var(--white-clr);
@@ -170,14 +179,28 @@ footer {
   line-height: 1;
 }
 .banner .content p {
-  font-size: 1.3rem;
   margin-block: 20px;
 }
-.banner .content .btn {
-  text-transform: uppercase;
+
+/*======== About Us ========*/
+.about-us {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
-.banner .content .btn:hover {
-  background-color: transparent;
+.about-us .col-1 {
+  flex-basis: 45%;
+}
+.about-us .col-2 {
+  flex-basis: 55%;
+}
+.about-us .col-1 img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  max-height: 450px;
+}
+.about-us .col-2 .btn {
+  margin-top: 20px;
 }
 
 /*========== MEDIA QUERY ==========*/
@@ -230,6 +253,9 @@ footer {
 @media screen and (max-width: 600px) {
   h1 {
     font-size: 1.8rem;
+  }
+  p {
+    font-size: 1rem;
   }
   .banner {
     background-position: -300px;
