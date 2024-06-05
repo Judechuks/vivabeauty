@@ -28,7 +28,7 @@
     <img src="{% static 'app/images/aboutUs.jpg' %}" alt="about us" />
   </article>
   <article class="col-2">
-    <h1>About Us</h1>
+    <h1>ABOUT <span>US<span></h1>
     <p>
       At Viva Beauty Home, we're passionate about hair care and beauty. Our team
       of skilled professionals is dedicated to providing top-notch services that
@@ -42,9 +42,30 @@
 </section>
 {% endblock about-us %}
 
-<!-- main-content block -->
-{% block main-content %}
+<!-- services block -->
+{% block services %}
 <section>
-  <h1>Welcome to Vivabeauty home</h1>
+  <h1 class="section-title">what we <span>do</span></h1>
 </section>
-{% endblock main-content %}
+{% endblock services %}
+
+<!-- why choose us block -->
+{% block why-choose-us %}
+<section>
+  <h1 class="section-title">why choose <span>us</span></h1>
+</section>
+{% endblock why-choose-us %}
+
+<!-- products block -->
+{% block products %}
+<section>
+  <h1 class="section-title">our <span>products</span></h1>
+</section>
+{% endblock products %}
+
+<!-- products block -->
+{% block clients-review %}
+<section>
+  <h1 class="section-title">Client's <span>Review</span></h1>
+</section>
+{% endblock clients-review %}
