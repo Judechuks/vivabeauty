@@ -69,22 +69,114 @@
 
 <!-- why choose us block -->
 {% block why-choose-us %}
-<section>
+<section id="why-choose-us">
   <h1 class="section-title">why choose <span>us</span></h1>
+  <div class="row">
+      <article class="col-1">
+        <h2>Why We're Different</h2>
+        <ul>
+          <li>Well equiped facility.</li> 
+          <li>We've got Experts that delivers.</li>
+          <li>We prioritize customer satisfaction.</li>
+          <li>We treat customer's data with confidentiality.</li>
+          <li>Our service and delivery is not limited by distance.</li>
+          <li>Tailored services to meet client's unique needs and preferences.</li>
+          <li>Strict hygiene standards to ensure a safe and comfortable visit.</li>
+          <li>We offer competitive prices without compromising on excellence.</li>
+        </ul>
+      </article>
+      <article class="col-2">
+        <img src="{% static 'app/images/salon-interior.png' %}" alt="network image" class="about-img">
+      </article>
+    </div>
 </section>
 {% endblock why-choose-us %}
 
 <!-- products block -->
 {% block products %}
-<section>
+<section id="products">
   <h1 class="section-title">our <span>products</span></h1>
-  <p>Seeking for the right hair product that fits your hair texture, or prevent hair loss and maintain hair color? Explore our range of high-quality hair products, from shampoos and conditioners to styling essentials.</p>
+  <p class="section-intro">Seeking for the right hair product that fits your hair texture, or prevent hair loss and maintain hair color? Explore our range of high-quality hair products, from shampoos and conditioners to styling essentials.</p>
+  <div class="myrow">
+    <article class="card">
+    <img src="{% static 'app/images/long-hair.avif' %}" alt="item 1">
+    <h3>This is the name of product</h3>
+    <div class="price-container">
+      <p class="price">$200</p>
+      <i class="fa-regular fa-heart"></i>
+    </div>
+    <div class="btn-container">
+    <a href="" class="btn btn-outline">info</a>
+    <a href="" class="btn btn-outline">add to cart</a>
+    </div>
+    </article>
+    <article class="card">
+    <img src="{% static 'app/images/long-hair.avif' %}" alt="item 1">
+    <h3>This is the name of product</h3>
+    <div class="price-container">
+      <p class="price">$200</p>
+      <i class="fa-regular fa-heart"></i>
+    </div>
+    <div class="btn-container">
+    <a href="" class="btn btn-outline">info</a>
+    <a href="" class="btn btn-outline">add to cart</a>
+    </div>
+    </article>
+    <article class="card">
+    <img src="{% static 'app/images/long-hair.avif' %}" alt="item 1">
+    <h3>This is the name of product</h3>
+    <div class="price-container">
+      <p class="price">$200</p>
+      <i class="fa-regular fa-heart"></i>
+    </div>
+    <div class="btn-container">
+    <a href="" class="btn btn-outline">info</a>
+    <a href="" class="btn btn-outline">add to cart</a>
+    </div>
+    </article>
+    <article class="card">
+    <img src="{% static 'app/images/long-hair.avif' %}" alt="item 1">
+    <h3>This is the name of product</h3>
+    <div class="price-container">
+      <p class="price">$200</p>
+      <i class="fa-regular fa-heart"></i>
+    </div>
+    <div class="btn-container">
+    <a href="" class="btn btn-outline">info</a>
+    <a href="" class="btn btn-outline">add to cart</a>
+    </div>
+    </article>
+    <article class="card">
+    <img src="{% static 'app/images/long-hair.avif' %}" alt="item 1">
+    <h3>This is the name of product</h3>
+    <div class="price-container">
+      <p class="price">$200</p>
+      <i class="fa-regular fa-heart"></i>
+    </div>
+    <div class="btn-container">
+    <a href="" class="btn btn-outline">info</a>
+    <a href="" class="btn btn-outline">add to cart</a>
+    </div>
+    </article>
+    <article class="card">
+    <img src="{% static 'app/images/long-hair.avif' %}" alt="item 1">
+    <h3>This is the name of product</h3>
+    <div class="price-container">
+      <p class="price">$200</p>
+      <i class="fa-regular fa-heart"></i>
+    </div>
+    <div class="btn-container">
+    <a href="" class="btn btn-outline">info</a>
+    <a href="" class="btn btn-outline">add to cart</a>
+    </div>
+    </article>
+  </div>
 </section>
 {% endblock products %}
 
 <!-- products block -->
 {% block clients-review %}
-<section>
+<section id="reviews">
   <h1 class="section-title">Client's <span>Review</span></h1>
 </section>
 {% endblock clients-review %}
