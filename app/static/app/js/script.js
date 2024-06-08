@@ -31,3 +31,6 @@ let swiperReview = new Swiper(".review-container", {
     },
   },
 });
+
+// footer get full year
+document.querySelector("span.year").innerHTML = new Date().getFullYear();
