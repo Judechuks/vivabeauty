@@ -98,90 +98,17 @@
   <h1 class="section-title">our <span>products</span></h1>
   <p class="section-intro">Seeking for the right hair product that fits your hair texture, or prevent hair loss and maintain hair color? Explore our range of high-quality hair products, from shampoos and conditioners to styling essentials.</p>
   <div class="product-container">
+    {% for category in categories %}
+      {% comment %}<a href="{% url 'product_list' category.id %}">{{ category.name }}</a> {% endcomment %}
     <article class="card">
-    <div class="card-img-container">
-      <img src="{% static 'app/images/long-hair.avif' %}" alt="item 1">
-    </div>
-    <h3>This is the name of product</h3>
-    <div class="price-container">
-      <p class="price">$200</p>
-      <i class="fa-regular fa-heart"></i>
-    </div>
-    <div class="btn-container">
-    <a href="" class="btn btn-outline">info</a>
-    <a href="" class="btn btn-outline">add to cart</a>
-    </div>
+      <div class="card-img-container">
+        <a href="#">
+          <img src="{{category.category_image.url}}" alt="{{ category.name }} Category">
+        </a>
+      </div>
+      <h3><a href="#">{{ category.name }} Category</a></h3>
     </article>
-    <article class="card">
-    <div class="card-img-container">
-      <img src="{% static 'app/images/long-hair.avif' %}" alt="item 1">
-    </div>
-    <h3>This is the name of product</h3>
-    <div class="price-container">
-      <p class="price">$200</p>
-      <i class="fa-regular fa-heart"></i>
-    </div>
-    <div class="btn-container">
-    <a href="" class="btn btn-outline">info</a>
-    <a href="" class="btn btn-outline">add to cart</a>
-    </div>
-    </article>
-    <article class="card">
-    <div class="card-img-container">
-      <img src="{% static 'app/images/long-hair.avif' %}" alt="item 1">
-    </div>
-    <h3>This is the name of product</h3>
-    <div class="price-container">
-      <p class="price">$200</p>
-      <i class="fa-regular fa-heart"></i>
-    </div>
-    <div class="btn-container">
-    <a href="" class="btn btn-outline">info</a>
-    <a href="" class="btn btn-outline">add to cart</a>
-    </div>
-    </article>
-    <article class="card">
-    <div class="card-img-container">
-      <img src="{% static 'app/images/long-hair.avif' %}" alt="item 1">
-    </div>
-    <h3>This is the name of product</h3>
-    <div class="price-container">
-      <p class="price">$200</p>
-      <i class="fa-regular fa-heart"></i>
-    </div>
-    <div class="btn-container">
-    <a href="" class="btn btn-outline">info</a>
-    <a href="" class="btn btn-outline">add to cart</a>
-    </div>
-    </article>
-    <article class="card">
-    <div class="card-img-container">
-      <img src="{% static 'app/images/long-hair.avif' %}" alt="item 1">
-    </div>
-    <h3>This is the name of product</h3>
-    <div class="price-container">
-      <p class="price">$200</p>
-      <i class="fa-regular fa-heart"></i>
-    </div>
-    <div class="btn-container">
-    <a href="" class="btn btn-outline">info</a>
-    <a href="" class="btn btn-outline">add to cart</a>
-    </div>
-    </article>
-    <article class="card">
-    <div class="card-img-container">
-      <img src="{% static 'app/images/long-hair.avif' %}" alt="item 1">
-    </div>
-    <h3>This is the name of product</h3>
-    <div class="price-container">
-      <p class="price">$200</p>
-      <i class="fa-regular fa-heart"></i>
-    </div>
-    <div class="btn-container">
-    <a href="" class="btn btn-outline">info</a>
-    <a href="" class="btn btn-outline">add to cart</a>
-    </div>
-    </article>
+    {% endfor %}
   </div>
   <a href="" class="btn btn-outline">learn more</a>
 </section>
