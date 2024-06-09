@@ -1,1 +1,4 @@
 __pycache__/
+migrations
+*.mysql
+*.sqlite3
