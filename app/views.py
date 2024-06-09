@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views import View
 from .models import Category, Product
 
 # Create your views here.
@@ -7,8 +8,7 @@ def home(request):
   categories = Category.objects.all()
   return render(request, "app/home.html", {'categories': categories})
 
-# request for the category_list
-def category_list(request):
-  categories = Category.objects.all()
-  # get all the categories in the Category Model and pass it to the home.html
-  return render(request, 'app/home.html', {'categories': categories})
+# category view
+class CategoryView(View):
+  def get(self, request):
+    return render(request, 'app/category.html')
