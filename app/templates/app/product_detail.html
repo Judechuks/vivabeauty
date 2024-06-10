@@ -1,0 +1,33 @@
+<!-- inheriting the codes, links, etc from the index.html -->
+{% extends 'app/base.html' %}
+
+<!-- loading static files -->
+{% load static %}
+
+<!-- loading custom_filter for price -->
+{% load custom_filters %}
+
+<!-- head block -->
+{% block head %}
+<!-- product_detail.css file -->
+<link rel="stylesheet" href="{% static 'app/css/product_detail.css' %}" />
+{% endblock head %}
+
+<!-- document title -->
+{% block title %}Viva Beauty Home | Product Details{% endblock title %}
+
+<!-- main products list block -->
+{% block products %}
+<section class="section-top-padding">
+  <h1 class="section-title">products <span>details</span></h1>
+  <aside class="product-list">
+    <!-- product item -->
+    <article class="card">
+      <div class="card-img-container">
+        <img src="{{ product.product_image.url }}" alt="{{ product.title }}" />
+      </div>
+      <h3 class="title">{{ product.title }}</h3>
+    </article>
+  </aside>
+</section>
+{% endblock products %}
