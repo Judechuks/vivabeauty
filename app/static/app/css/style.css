@@ -297,7 +297,17 @@ section {
 }
 
 /*====== Products =======*/
+.section-top-padding {
+  padding-top: 100px;
+}
 #products {
+  text-align: center;
+}
+.section-intro {
+  margin-bottom: 60px;
+  font-weight: 600;
+  max-width: 900px;
+  margin-inline: auto;
   text-align: center;
 }
 .product-container {
@@ -329,51 +339,33 @@ section {
   }
 }
 
-#products .section-intro {
-  margin-bottom: 60px;
-}
 #products .card-img-container {
   border-radius: var(--radius);
   background: var(--pink-clr);
+  overflow: hidden;
+  margin-bottom: 10px;
 }
 #products .card img {
   width: 100%;
   height: 220px;
   display: block;
 }
-#products .card .price-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-#products .card .price {
-  margin-block: 10px;
-}
-#products .card i {
-  font-size: 1.2rem;
-  cursor: pointer;
+#products .card .link {
+  color: var(--dark-purple-clr);
+  text-transform: capitalize;
   transition: var(--transition-duration);
 }
-#products .card i:hover {
-  color: red;
-}
-#products .card .btn-container {
-  display: flex;
-  gap: 10px;
-}
-#products .card .btn {
-  padding-block: 6px;
-  padding-inline: 0;
-  font-size: 0.9rem;
-}
-#products .btn-outline:hover {
+#products a:hover {
   color: var(--purple-clr);
 }
-#products .card .btn:first-child {
-  flex-basis: 30%;
+#products .product-desc {
+  text-align: justify;
+  margin-top: 8px;
 }
-#products .card .btn:last-child {
-  flex-basis: 70%;
+#products .card .btn {
+  margin-top: 15px;
+  display: block;
+  text-align: center;
 }
 #products > .btn {
   margin-top: 30px;
