@@ -18,13 +18,14 @@ def category_list(request):
 
   return render(request, 'app/category.html', {'categories': categories, 'products_by_category': products_by_category})
 
-def product_detail(request, product_id):
-  product = Product.objects.get(pk=product_id)
-  return render(request, 'app/product_detail.html', {'product': product})
-  
 # product view
 def product_list(request, category_id):
   products = Product.objects.all()
   # getting all the products that matches the category_id
   products = Product.objects.filter(category_id=category_id)
   return render(request, 'app/products.html', {'products': products})
+
+# product detail view
+def product_detail(request, product_id):
+  product = Product.objects.get(pk=product_id)
+  return render(request, 'app/product_detail.html', {'product': product})
