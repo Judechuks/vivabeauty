@@ -66,7 +66,7 @@ section {
 .section-title {
   text-align: center;
   text-transform: uppercase;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 .section-title span {
   color: var(--pink-clr);
@@ -298,7 +298,10 @@ section {
 
 /*====== Products =======*/
 .section-top-padding {
-  padding-top: 100px;
+  padding-top: 90px;
+}
+.section-top-padding .section-title {
+  line-height: 1;
 }
 #products {
   text-align: center;
@@ -622,6 +625,9 @@ footer .divider {
   footer .col li {
     font-size: 1rem;
   }
+  .section-intro {
+    margin-bottom: 40px;
+  }
   .row {
     gap: 20px;
   }
@@ -652,6 +658,9 @@ footer .divider {
   footer .divider {
     flex-direction: column-reverse;
     row-gap: 15px;
+  }
+  .section-top-padding {
+    padding-top: 80px;
   }
 }
 
