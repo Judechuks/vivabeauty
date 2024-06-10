@@ -1,0 +1,26 @@
+/*====== Products =======*/
+.product-list-container {
+  display: flex;
+  gap: 25px;
+}
+
+/*===== first column =====*/
+.categories {
+  flex-basis: 20%;
+  text-align: center;
+}
+.categories h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: var(--purple-clr);
+}
+.categories li a {
+  display: block;
+  color: var(--white-clr);
+  background: var(--purple-clr);
+  text-transform: uppercase;
+  padding: 6px 0;
+}
+.categories li a {
+  border-bottom: 1px solid;
+}
