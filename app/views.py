@@ -11,19 +11,16 @@ def home(request):
 # category view
 def category_list(request):
   categories = Category.objects.all()
-  products_by_category = {}  # A dictionary to store products grouped by category
-
-  for category in categories:
-    products_by_category[category] = Product.objects.filter(category=category)
-
-  return render(request, 'app/category.html', {'categories': categories, 'products_by_category': products_by_category})
+  return render(request, 'app/category.html', {'categories': categories})
 
 # product view
 def product_list(request, category_id):
+  categories = Category.objects.all()
   products = Product.objects.all()
   # getting all the products that matches the category_id
   products = Product.objects.filter(category_id=category_id)
-  return render(request, 'app/products.html', {'products': products})
+  selected_category = Category.objects.get(id=category_id)
+  return render(request, 'app/products.html', {'products': products, 'selected_category' : selected_category, 'categories': categories})
 
 # product detail view
 def product_detail(request, product_id):
