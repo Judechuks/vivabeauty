@@ -4,6 +4,9 @@
 <!-- loading static files -->
 {% load static %}
 
+<!-- loading custom_filter for price -->
+{% load custom_filters %}
+
 <!-- head block -->
 {% block head %}
 <!-- product.css file -->
@@ -28,7 +31,6 @@
 
   <article class="product-list-container">
     <ul class="categories">
-      <h3>Categories</h3>
       {% for category in categories %}
       <li>
         <a class="" href="{% url 'product_list' category.id %}">{{category}}</a>
@@ -45,9 +47,14 @@
               src="{{ product.product_image.url }}"
               alt="{{ product.title }}" />
           </div>
-          <h3>{{ product.title }}</h3>
+          <h3 class="title">{{ product.title }}</h3>
         </a>
-        <p>#{{ product.discounted_price }}</p>
+        {% comment %} format_with_commas is a function from custom_filters.py
+        that displays comma separated prices price {% endcomment %}
+        <p class="price">
+          #{{ product.discounted_price|format_with_commas }} &nbsp;
+          <span>{{product.selling_price|format_with_commas }}</span>
+        </p>
         <a href="{% url 'product_detail' product.id %}" class="btn btn-outline"
           >details</a
         >
