@@ -26,18 +26,32 @@
     styling essentials.
   </p>
 
-  <article class="">
-    <ul>
-      <h4>Categories</h4>
+  <article class="product-list-container">
+    <ul class="categories">
+      <h3>Categories</h3>
       {% for category in categories %}
-      <li><a href="{% url 'product_list' category.id %}">{{category}}</a></li>
+      <li>
+        <a class="" href="{% url 'product_list' category.id %}">{{category}}</a>
+      </li>
       {% endfor %}
     </ul>
-    <aside>
+    <aside class="product-list">
       {% for product in products %}
-      <a href="#">
-        <h3>{{ product.title }}</h3>
-      </a>
+      <!-- product item -->
+      <article class="card">
+        <a href="{% url 'product_detail' product.id %}">
+          <div class="card-img-container">
+            <img
+              src="{{ product.product_image.url }}"
+              alt="{{ product.title }}" />
+          </div>
+          <h3>{{ product.title }}</h3>
+        </a>
+        <p>#{{ product.discounted_price }}</p>
+        <a href="{% url 'product_detail' product.id %}" class="btn btn-outline"
+          >details</a
+        >
+      </article>
       {% endfor %}
     </aside>
   </article>
