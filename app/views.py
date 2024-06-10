@@ -9,6 +9,22 @@ def home(request):
   return render(request, "app/home.html", {'categories': categories})
 
 # category view
-class CategoryView(View):
-  def get(self, request):
-    return render(request, 'app/category.html')
+def category_list(request):
+  categories = Category.objects.all()
+  products_by_category = {}  # A dictionary to store products grouped by category
+
+  for category in categories:
+    products_by_category[category] = Product.objects.filter(category=category)
+
+  return render(request, 'app/category.html', {'categories': categories, 'products_by_category': products_by_category})
+
+def product_detail(request, product_id):
+  product = Product.objects.get(pk=product_id)
+  return render(request, 'app/product_detail.html', {'product': product})
+  
+# product view
+def product_list(request, category_id):
+  products = Product.objects.all()
+  # getting all the products that matches the category_id
+  products = Product.objects.filter(category_id=category_id)
+  return render(request, 'app/products.html', {'products': products})
