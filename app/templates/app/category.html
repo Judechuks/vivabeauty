@@ -1,0 +1,38 @@
+<!-- inheriting the codes, links, etc from the index.html -->
+{% extends 'app/base.html' %}
+
+<!-- loading static files -->
+{% load static %}
+
+<!-- head block -->
+{% block head %}
+<!-- product.css file -->
+<link rel="stylesheet" href="{% static 'app/css/product.css' %}" />
+{% endblock head %}
+
+<!-- document title -->
+{% block title %}Viva Beauty Home | Product Category{% endblock title %}
+
+<!-- main products category block -->
+{% block products %}
+<section id="product-list">
+  <h1 class="section-title">our <span>products</span></h1>
+  <p class="section-intro">
+    Seeking for the right hair product that fits your hair texture, or prevent
+    hair loss and maintain hair color? Explore our range of high-quality hair
+    products, from shampoos and conditioners to styling essentials.
+  </p>
+  <ul class="category-list">
+    {% for category, products in products_by_category.items %}
+    <li>
+      <a href="{% url 'product_list' category.id %}">{{ category.name }}</a>
+      <ul>
+        {% for product in products %}
+        <li>{{ product.title }}</li>
+        {% endfor %}
+      </ul>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock products %}
