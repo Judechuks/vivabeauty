@@ -52,8 +52,8 @@
         {% comment %} format_with_commas is a function from custom_filters.py
         that displays comma separated prices price {% endcomment %}
         <p class="price">
-          #{{ product.discounted_price|format_with_commas }} &nbsp;
-          <span>{{product.selling_price|format_with_commas }}</span>
+          &#8358;{{ product.discounted_price|format_with_commas }} &nbsp;
+          <span>&#x20A6;{{product.selling_price|format_with_commas }}</span>
         </p>
         <a href="{% url 'product_detail' product.id %}" class="btn btn-outline"
           >details</a
