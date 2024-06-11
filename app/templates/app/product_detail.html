@@ -20,14 +20,29 @@
 {% block products %}
 <section class="section-top-padding">
   <h1 class="section-title">products <span>details</span></h1>
-  <aside class="product-list">
-    <!-- product item -->
-    <article class="card">
-      <div class="card-img-container">
-        <img src="{{ product.product_image.url }}" alt="{{ product.title }}" />
-      </div>
+  <article class="product-detail">
+    <div class="img-container">
+      <img src="{{ product.product_image.url }}" alt="{{ product.title }}" />
+    </div>
+    <aside>
       <h3 class="title">{{ product.title }}</h3>
-    </article>
-  </aside>
+      <p class="price">
+        &#x20A6;{{ product.discounted_price|format_with_commas }}
+        <span>&#x20A6;{{product.selling_price|format_with_commas }}</span>
+      </p>
+      <small class="small"
+        >+ shipping fee will be communicated to you upon checkout.</small
+      >
+      <a href="" class="btn">add to cart</a>
+    </aside>
+    <div class="col">
+      <h3>Description</h3>
+      <p>{{ product.description }}</p>
+    </div>
+    <div class="col">
+      <h3>Composition</h3>
+      <p>{{ product.composition }}</p>
+    </div>
+  </article>
 </section>
 {% endblock products %}
