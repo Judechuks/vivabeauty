@@ -298,7 +298,7 @@ section {
 
 /*====== Products =======*/
 .section-top-padding {
-  padding-top: 90px;
+  padding-top: 100px;
 }
 .section-top-padding .section-title {
   line-height: 1;
@@ -660,7 +660,7 @@ footer .divider {
     row-gap: 15px;
   }
   .section-top-padding {
-    padding-top: 80px;
+    padding-top: 90px;
   }
 }
 
