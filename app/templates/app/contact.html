@@ -52,14 +52,56 @@
         media handles below.
       </p>
       <div class="contact-details">
-        <a href=""><i class="fas fa-paper-plane"></i> contact@vivabeauty.com</a>
-        <a href=""><i class="fas fa-phone-square"></i> 081463333377</a>
+        <a href=""><i class="fas fa-paper-plane"></i> {{contact_info.email}}</a>
+        <a href=""
+          ><i class="fas fa-phone-square"></i> {{contact_info.phone_number}}</a
+        >
       </div>
+      {% block social-media-handles %}
       <div class="social-icons">
-        <a href="" target="_blank"><i class="fab fa-square-facebook"></i></a>
-        <a href="" target="_blank"><i class="fab fa-square-x-twitter"></i></a>
-        <a href="" target="_blank"><i class="fab fa-instagram"></i></a>
+        <!--facebook icon and link-->
+        {% if contact_info.facebook %}
+        <a href="{{contact_info.facebook}}" target="_blank"
+          ><i class="fab fa-square-facebook"></i
+        ></a>
+        {% endif %}
+
+        <!--whatsapp icon and link-->
+        {% if contact_info.whatsapp %}
+        <a href="{{contact_info.whatsapp}}" target="_blank"
+          ><i class="fab fa-square-whatsapp"></i
+        ></a>
+        {% endif %}
+
+        <!--twitter icon and link-->
+        {% if contact_info.twitter %}
+        <a href="{{contact_info.twitter}}" target="_blank"
+          ><i class="fab fa-square-x-twitter"></i
+        ></a>
+        {% endif %}
+
+        <!--instagram icon and link-->
+        {% if contact_info.instagram %}
+        <a href="{{contact_info.instagram}}" target="_blank"
+          ><i class="fab fa-square-instagram"></i
+        ></a>
+        {% endif %}
+
+        <!--tiktok icon and link-->
+        {% if contact_info.tiktok %}
+        <a href="{{contact_info.tiktok}}" target="_blank"
+          ><i class="fab fa-tiktok"></i
+        ></a>
+        {% endif %}
+
+        <!--linkedin icon and link-->
+        {% if contact_info.linkedin %}
+        <a href="{{contact_info.linkedin}}" target="_blank"
+          ><i class="fab fa-linkedin"></i
+        ></a>
+        {% endif %}
       </div>
+      {% endblock social-media-handles %}
     </article>
   </div>
 </section>
