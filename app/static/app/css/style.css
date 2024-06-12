@@ -529,8 +529,14 @@ form .btn:hover {
 .contact i:hover {
   color: rgb(0, 0, 190);
 }
-.contact .fa-instagram:hover {
-  color: rgb(200, 0, 0);
+.contact .fa-square-instagram:hover {
+  color: rgb(243, 106, 27);
+}
+.contact .fa-square-whatsapp:hover {
+  color: rgb(25, 100, 2);
+}
+.contact .fa-tiktok:hover {
+  color: rgb(0, 0, 0);
 }
 
 /*====== Footer =======*/
