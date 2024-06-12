@@ -39,6 +39,7 @@ a {
   padding: 10px 20px;
   color: var(--white-clr);
   text-transform: uppercase;
+  cursor: pointer;
   background-color: var(--purple-clr);
   border: 1px solid var(--purple-clr);
   transition: var(--transition-duration);
@@ -424,6 +425,112 @@ section {
 #reviews .swiper-pagination-bullet {
   background-color: var(--pink-clr);
   margin-bottom: 20px;
+}
+
+/*====== Contac Us =======*/
+.location {
+  width: 100%;
+  padding: 0;
+}
+.location iframe {
+  width: 100%;
+}
+.contact-container {
+  display: flex;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+/*===== Contact-left Column =====*/
+.contact-left {
+  flex-basis: 56%;
+}
+.contact-left form input,
+.contact-left form textarea {
+  width: 100%;
+  border: none;
+  outline: none;
+  background-color: rgb(139, 104, 125);
+  padding: 12px;
+  margin: 10px 0;
+  color: var(--white-clr);
+  font-size: 1.125rem; /*18px*/
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+}
+.contact ::placeholder {
+  color: #ddd;
+}
+form .btn {
+  padding-inline: 40px;
+  font-size: 1.125rem; /*18px*/
+  margin-top: 10px;
+  border-radius: var(--radius-sm);
+}
+form .btn:hover {
+  background: var(--dark-purple-clr);
+}
+@media screen and (max-width: 920px) {
+  .contact-container {
+    flex-direction: column;
+  }
+  .location {
+    height: 45vh;
+  }
+  .location iframe {
+    height: 100%;
+  }
+}
+
+/*----- Contact-left Column -----*/
+.contact-left > p,
+.contact-right > p {
+  margin-bottom: 15px;
+}
+.contact-right {
+  flex-basis: 40%;
+}
+.contact-details {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.contact-details a {
+  font-size: 1.2rem;
+  color: var(--purple-clr);
+}
+.contact-details i {
+  font-size: 1.5rem;
+  margin-right: 10px;
+}
+.contact-details a:hover {
+  color: var(--pink-clr);
+}
+.contact-right p i {
+  margin-right: 10px;
+  color: var(--purple-clr);
+  font-size: 1.5625rem; /*25px*/
+}
+
+/*------- Social Icon -------*/
+.contact .social-icons {
+  font-size: 1.5625rem; /*25px*/
+  margin-top: 10px;
+}
+.contact .social-icons a {
+  font-size: 1.875rem; /*30px*/
+  margin-right: 10px;
+  color: var(--purple-clr);
+}
+.contact .social-icons a:hover {
+  transform: translateY(-5px);
+}
+.contact i:hover {
+  color: rgb(0, 0, 190);
+}
+.contact .fa-instagram:hover {
+  color: rgb(200, 0, 0);
 }
 
 /*====== Footer =======*/
