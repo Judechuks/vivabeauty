@@ -1,0 +1,66 @@
+<!-- inheriting the codes, links, etc from the base.html -->
+{% extends 'app/base.html' %}
+
+<!-- loading static files -->
+{% load static %}
+
+<!-- document title -->
+{% block title %}Viva Beauty Home | Contact Us{% endblock title %}
+
+<!-- main products list block -->
+{% block main-content %}
+<section class="contact section-top-padding">
+  <h1 class="section-title">Contact <span>Us</span></h1>
+  <p class="section-intro">Reach out to us via any means below.</p>
+
+  <section class="location">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.7948182437735!2d6.7862979999999995!3d6.1582289!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104393db4f97a725%3A0xb7e3dd6a91061d34!2sEdufun%20Technik%20STEM%20Hub%202!5e0!3m2!1sen!2sng!4v1667658289221!5m2!1sen!2sng"
+      width="600"
+      height="450"
+      style="border: 0"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </section>
+
+  <div class="contact-container">
+    <article class="contact-left">
+      <p>
+        To send questions or comments to Viva Beauty Home, please fill out the
+        form below with your information. We'll always respond to your messages
+        right away.
+      </p>
+      <form action="" method="POST">
+        <input type="text" name="Name" placeholder="Enter Your Name" required />
+        <input
+          type="email"
+          name="Email"
+          placeholder="Enter Your Email"
+          required />
+        <textarea
+          rows="6"
+          name="Message"
+          placeholder="Enter Message"
+          required></textarea>
+        <button type="submit" class="btn">SUBMIT</button>
+      </form>
+    </article>
+    <article class="contact-right">
+      <p>
+        You can also contact us via our phone number, WhatsApp, email, or social
+        media handles below.
+      </p>
+      <div class="contact-details">
+        <a href=""><i class="fas fa-paper-plane"></i> contact@vivabeauty.com</a>
+        <a href=""><i class="fas fa-phone-square"></i> 081463333377</a>
+      </div>
+      <div class="social-icons">
+        <a href="" target="_blank"><i class="fab fa-square-facebook"></i></a>
+        <a href="" target="_blank"><i class="fab fa-square-x-twitter"></i></a>
+        <a href="" target="_blank"><i class="fab fa-instagram"></i></a>
+      </div>
+    </article>
+  </div>
+</section>
+{% endblock main-content %}
