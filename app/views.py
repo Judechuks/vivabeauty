@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import View
-from .models import Category, Product
+from .models import Category, Product, Contact
 
 # Create your views here.
 # request for the homepage
@@ -26,3 +26,10 @@ def product_list(request, category_id):
 def product_detail(request, product_id):
   product = Product.objects.get(pk=product_id)
   return render(request, 'app/product_detail.html', {'product': product})
+
+# contact us view
+def contact(request):
+  contact_info = Contact.objects.first()
+  # context to pass down the contact information
+  context = {'contact_info': contact_info}
+  return render(request, 'app/contact.html', context)
