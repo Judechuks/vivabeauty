@@ -499,6 +499,7 @@ form .btn:hover {
 .contact-details a {
   font-size: 1.2rem;
   color: var(--purple-clr);
+  width: fit-content;
 }
 .contact-details i {
   font-size: 1.5rem;
@@ -537,6 +538,21 @@ form .btn:hover {
 }
 .contact .fa-tiktok:hover {
   color: rgb(0, 0, 0);
+}
+
+/* contact us submisssion page */
+.message-container {
+  text-align: center;
+  min-height: 50vh;
+  display: grid;
+  place-content: center;
+}
+.message-container p {
+  font-size: 1.2rem;
+  margin-top: 20px;
+}
+.message-container .btn {
+  margin-top: 50px;
 }
 
 /*====== Footer =======*/
