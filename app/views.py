@@ -6,7 +6,10 @@ from .models import Category, Product, Contact
 # request for the homepage
 def home(request):
   categories = Category.objects.all()
-  return render(request, "app/home.html", {'categories': categories})
+  contact_info = Contact.objects.first()
+  # context to pass down the contact and categories information
+  context = {'categories': categories, 'contact_info': contact_info}
+  return render(request, "app/home.html", context)
 
 # category view
 def category_list(request):
