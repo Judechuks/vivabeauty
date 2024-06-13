@@ -32,6 +32,7 @@
         right away.
       </p>
       <form action="" method="POST">
+        {% csrf_token %}
         <input type="text" name="Name" placeholder="Enter Your Name" required />
         <input
           type="email"
