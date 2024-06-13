@@ -84,16 +84,16 @@
           <h2>Quick Links</h2>
           <ul>
             <li>
-              <a href href="/">Home</a>
+              <a href="/">Home</a>
             </li>
             <li>
-              <a href href="/services">Services</a>
+              <a href="/services">Services</a>
             </li>
             <li>
-              <a href href="/products">Products</a>
+              <a href="/products">Products</a>
             </li>
             <li>
-              <a href href="/contact">Contact</a>
+              <a href="/contact">Contact</a>
             </li>
           </ul>
         </div>
@@ -101,7 +101,7 @@
           <h2>Resources</h2>
           <ul>
             <li>
-              <a href="/">Book Service</a>
+              <a href="/booking">Book Service</a>
             </li>
             <li>
               <a href="/">Checkout</a>
@@ -118,24 +118,69 @@
           <h2>Contact</h2>
           <ul>
             <li>
-              <a href="tel:+2348146333337"> Call: 081463333377 </a>
+              <a href="tel:{{contact_info.phone_number}}">
+                Call: {{contact_info.phone_number}}
+              </a>
             </li>
             <li>
-              <a href="wa.me/+2348146333337"> Chat: 081463333377 </a>
+              <a href="mailto:{{contact_info.email}}">
+                {{contact_info.email}}
+              </a>
             </li>
             <li>
-              <a href="mailto:vivabeauty@gmail.com"> vivabeauty@gmail.com </a>
-            </li>
-            <li>
-              <a href="">16 Isedeh by Mariere, Delta, Nigeria</a>
+              <a href="https://maps.google.com/?q='{{contact_info.address}}'"
+                >{{contact_info.address}}</a
+              >
             </li>
           </ul>
         </div>
       </article>
       <div class="divider">
         <p>All rights reserved &copy; Vivabeauty <span class="year"></span></p>
-        <!-- social media handles from the contact us page -->
-        {% block social-media-handles %}{% endblock social-media-handles %}
+        <!-- social media handles -->
+        <div class="social-icons">
+          <!--facebook icon and link-->
+          {% if contact_info.facebook %}
+          <a href="{{contact_info.facebook}}" target="_blank"
+            ><i class="fab fa-square-facebook"></i
+          ></a>
+          {% endif %}
+
+          <!--whatsapp icon and link-->
+          {% if contact_info.whatsapp %}
+          <a href="{{contact_info.whatsapp}}" target="_blank"
+            ><i class="fab fa-square-whatsapp"></i
+          ></a>
+          {% endif %}
+
+          <!--twitter icon and link-->
+          {% if contact_info.twitter %}
+          <a href="{{contact_info.twitter}}" target="_blank"
+            ><i class="fab fa-square-x-twitter"></i
+          ></a>
+          {% endif %}
+
+          <!--instagram icon and link-->
+          {% if contact_info.instagram %}
+          <a href="{{contact_info.instagram}}" target="_blank"
+            ><i class="fab fa-square-instagram"></i
+          ></a>
+          {% endif %}
+
+          <!--tiktok icon and link-->
+          {% if contact_info.tiktok %}
+          <a href="{{contact_info.tiktok}}" target="_blank"
+            ><i class="fab fa-tiktok"></i
+          ></a>
+          {% endif %}
+
+          <!--linkedin icon and link-->
+          {% if contact_info.linkedin %}
+          <a href="{{contact_info.linkedin}}" target="_blank"
+            ><i class="fab fa-linkedin"></i
+          ></a>
+          {% endif %}
+        </div>
       </div>
     </footer>
   </body>
