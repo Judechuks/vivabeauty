@@ -1,0 +1,22 @@
+<!-- inheriting the codes, links, etc from the base.html -->
+{% extends 'app/base.html' %}
+
+<!-- loading static files -->
+{% load static %}
+
+<!-- document title -->
+{% block title %}Viva Beauty Home | Successful Submission{% endblock title %}
+
+<!-- main products list block -->
+{% block main-content %}
+<section class="contact section-top-padding">
+  <h1 class="section-title">Contact <span>Us</span></h1>
+  <p class="section-intro">Your message was submitted successfully!</p>
+
+  <section class="message-container">
+    <h2>Submitted Successfully!</h2>
+    <p>Thank you for reaching out to us. We'll get back to you swiftly.</p>
+    <a href="{% url 'contact' %}" class="btn">Go Back</a>
+  </section>
+</section>
+{% endblock main-content %}
