@@ -13,9 +13,9 @@
   <h1 class="section-title">Contact <span>Us</span></h1>
   <p class="section-intro">Reach out to us via any means below.</p>
 
-  <section class="location">
+  <section class="location" id="map">
     <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.7948182437735!2d6.7862979999999995!3d6.1582289!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104393db4f97a725%3A0xb7e3dd6a91061d34!2sEdufun%20Technik%20STEM%20Hub%202!5e0!3m2!1sen!2sng!4v1667658289221!5m2!1sen!2sng"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1667.5115805421551!2d6.194869636675932!3d6.259347723264336!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10414e58de72cb43%3A0xb7065043769b2c1f!2s16%20Isedeh%20St%2C%20Boji%20Boji%2C%20Agbor%20321103%2C%20Delta!5e0!3m2!1sen!2sng!4v1718227156030!5m2!1sen!2sng"
       width="600"
       height="450"
       style="border: 0"
@@ -52,12 +52,16 @@
         media handles below.
       </p>
       <div class="contact-details">
-        <a href=""><i class="fas fa-paper-plane"></i> {{contact_info.email}}</a>
-        <a href=""
+        <a href="mailto:{{contact_info.email}}"
+          ><i class="fas fa-paper-plane"></i> {{contact_info.email}}</a
+        >
+        <a href="tel:{{contact_info.phone_number}}"
           ><i class="fas fa-phone-square"></i> {{contact_info.phone_number}}</a
         >
+        <a href="https://maps.google.com/?q='{{contact_info.address}}'"
+          ><i class="fas fa-location-dot"></i> {{contact_info.address}}</a
+        >
       </div>
-      {% block social-media-handles %}
       <div class="social-icons">
         <!--facebook icon and link-->
         {% if contact_info.facebook %}
@@ -101,7 +105,6 @@
         ></a>
         {% endif %}
       </div>
-      {% endblock social-media-handles %}
     </article>
   </div>
 </section>
