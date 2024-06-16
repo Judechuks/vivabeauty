@@ -1,40 +1,31 @@
-<!-- inheriting the codes, links, etc from the index.html -->
+<!-- inheriting the codes, links, etc from the base.html -->
 {% extends 'app/base.html' %}
 
 <!-- loading static files -->
 {% load static %}
 
 <!-- document title -->
-{% block title %}Viva Beauty Home | Product Category{% endblock title %}
+{% block title %}Viva Beauty Home | {{category_for}} Category{% endblock title%}
 
 <!-- main products category block -->
 {% block main-content %}
 <section id="products" class="section-top-padding">
-  <h1 class="section-title">our <span>products</span></h1>
-  <p class="section-intro">
-    Seeking the right product and accessories that complement your beauty and
-    make you radiant? Search no more. Explore our range of high-quality products
-    from different categories.
-  </p>
+  <h1 class="section-title">our <span>{{category_for}}</span></h1>
+  <p class="section-intro">{{category_intro}}</p>
   <div class="product-container">
     {% for category in categories %}
     <article class="card">
-      <a href="{% url 'product_list' category.id %}">
+      <a href="{% url category_for category.id %}">
         <div class="card-img-container">
           <img
             src="{{category.category_image.url}}"
             alt="{{ category.name }} Category" />
         </div>
-        <h3>{{ category.name }} Products</h3>
+        <h3>{{ category.name }} {{category_for}}</h3>
       </a>
-      <p class="product-desc">
-        Explore the right hair products that fits your hair texture, prevent
-        hair loss and maintain hair color, prevents dandruffs, and many more.
-        Check out our range of high-quality hair products, from shampoos and
-        conditioners to styling essentials.
-      </p>
-      <a href="{% url 'product_list' category.id %}" class="btn btn-outline"
-        >View Products</a
+      <p class="product-desc">{{category.category_description}}</p>
+      <a href="{% url category_for category.id %}" class="btn btn-outline"
+        >View {{category_for}}</a
       >
     </article>
     {% endfor %}
