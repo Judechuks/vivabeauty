@@ -6,19 +6,32 @@ from .models import ProductCategory, Product, Contact, ServiceCategory, Service
 # Create your views here.
 # request for the homepage
 def home(request):
-  categories = ProductCategory.objects.all()
+  product_categories = ProductCategory.objects.all()
+  service_categories = ServiceCategory.objects.all()
   contact_info = Contact.objects.first()
   # context to pass down the contact and categories information
-  context = {'categories': categories, 'contact_info': contact_info}
+  context = {'product_categories': product_categories, 'service_categories': service_categories, 'contact_info': contact_info}
   return render(request, "app/home.html", context)
 
 # product category view
-def category_list(request):
+def product_categories(request):
   categories = ProductCategory.objects.all()
   contact_info = Contact.objects.first()
   # context to pass down the contact and categories information
-  context = {'categories': categories, 'contact_info': contact_info}
+  category_for = 'products' # want to use same category template for both products and services so the so the category_for determines whose category text is displayed
+  category_intro = 'Seeking the right product and accessories that complement your beauty and make you radiant? Search no more. Explore our range of high-quality products from different categories.' # same idea from category_for
+  context = {'categories': categories, 'category_for': category_for, 'category_intro': category_intro, 'contact_info': contact_info}
   return render(request, 'app/category.html', context)
+
+# all products view
+def all_product_list(request):
+  categories = ProductCategory.objects.all()
+  contact_info = Contact.objects.first()
+  # getting all products
+  products = Product.objects.all()
+  # context to pass down the contact and categories information
+  context = {'products': products, 'categories': categories, 'contact_info': contact_info}
+  return render(request, 'app/products.html', context)
 
 # product view
 def product_list(request, category_id):
@@ -69,17 +82,30 @@ def service_categories(request):
   categories = ServiceCategory.objects.all()
   contact_info = Contact.objects.first()
   # context to pass down the contact and categories information
-  context = {'categories': categories, 'contact_info': contact_info}
+  category_for = 'services' # want to use same category template for both products and services so the so the category_for determines whose category text is displayed
+  category_intro = 'We offer a comprehensive range of services to pamper you from head to toe. Browse our services below and start your transformation today!' # same idea from category_for
+  context = {'categories': categories, 'category_for': category_for, 'category_intro' :category_intro, 'contact_info': contact_info}
+  return render(request, 'app/category.html', context)
+
+# all services view
+def all_service_list(request):
+  contact_info = Contact.objects.first()
+  # getting all services
+  services = Service.objects.all()
+  categories = ServiceCategory.objects.all()
+  # context to pass down the contact and categories information
+  context = {'services': services, 'categories': categories, 'contact_info': contact_info}
   return render(request, 'app/services.html', context)
 
 # services view
 def services(request, category_id):
   contact_info = Contact.objects.first()
-  categories = ServiceCategory.objects.all()
   # getting all the services that matches the category_id
+  categories = ServiceCategory.objects.all()
   services = Service.objects.filter(category_id=category_id)
+  selected_category = ServiceCategory.objects.get(id=category_id)
   # context to pass down the contact and categories information
-  context = {'contact_info': contact_info, "services": services}
+  context = {'contact_info': contact_info, 'categories': categories, "selected_category": selected_category, "services": services}
   return render(request, 'app/services.html', context)
   
 # service detail view
