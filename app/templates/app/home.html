@@ -43,24 +43,19 @@
 <!-- services  -->
 <section id="services">
   <h1 class="section-title">what we <span>do</span></h1>
+  <p class="section-intro">We offer a comprehensive range of services to pamper you from head to toe. Browse our services below and start your transformation today!</p>
   <div class="row">
-      <article class="col">
-        <img src="{% static 'app/images/hair-plaiting.webp' %}" alt="Hair Plaiting" class="service-img">
-        <h2>Hair Plaiting</h2>
-        <p>Want a stylish braid or intricate plait? Our experts create stunning designs that suit your personality. With our techniques, equipment, and professionals, who are good with what they do, We offer the best braids and plaits you can imagine, and make your dream become a reality.</p>
-      </article>
-      <article class="col">
-        <img src="{% static 'app/images/products-kit.png' %}" alt="Hair Treatments" class="service-img">
-        <h2>Hair Treatments</h2>
-        <p>Tired of hair loss? or Looking for the right hair treatment that fits your hair? You're at the right place. At Viva Beauty Home, We can revitalize your hair with our nourishing treatments. From deep conditioning to scalp massages, we'll pamper your locks. </p>
-      </article>
-      <article class="col">
-        <img src="{% static 'app/images/hair-extensions.png' %}" alt="Hair Extensions" class="service-img">
-        <h2>Hair Extensions</h2>
-        <p>Are you looing for an extra boost of hair volume? We've got you covered, you we've got a wide range of human hair extension options, including weaves, fusions, tape-in and clip-in extensions. Our experts are there to help decide which is right for you.</p>
-      </article>
+    {% for category in service_categories %}
+    <article class="col">
+      <a href="{% url 'products' category.id %}">
+        <img src="{{category.category_image.url}}" alt="{{ category.name }} Category" class="service-img">
+        <h2>{{ category.name }} services</h2>
+      </a>
+      <p>{{ category.category_description }}</p>
+    </article>
+    {% endfor %}
     </div>
-      <a href="services" class="btn btn-outline">learn more</a>
+    <a href="service_categories" class="btn btn-outline">learn more</a>
 </section>
 
 <!-- why choose us -->
@@ -91,18 +86,19 @@
   <h1 class="section-title">our <span>products</span></h1>
   <p class="section-intro">Seeking for the right product or accessories that complements your beauty and make you radiant? Search no more. Explore our range of high-quality products from different categories.</p>
   <div class="product-container">
-    {% for category in categories %}
+    {% for category in product_categories %}
     <article class="card">
-      <a href="{% url 'product_list' category.id %}">
+      <a href="{% url 'products' category.id %}">
         <div class="card-img-container">
           <img src="{{category.category_image.url}}" alt="{{ category.name }} Category">
         </div>
         <h3>{{ category.name }} Products</h3>
       </a>
+      <p class="product-desc">{{category.category_description}}</p>
     </article>
     {% endfor %}
   </div>
-  <a href="/categories/" class="btn btn-outline">learn more</a>
+  <a href="/product_categories/" class="btn btn-outline">learn more</a>
 </section>
 
 <!-- clients-review -->
