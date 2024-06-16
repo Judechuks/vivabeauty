@@ -1,12 +1,12 @@
 from django.contrib import admin
-from . models import Product, Category, Contact
+from . models import ProductCategory, Product, Contact, ServiceCategory, Service, Subservice, WorkSampleImage
 
 # Register your models here.
 # Category model
-@admin.register(Category) # registers the product model
+@admin.register(ProductCategory) # registers the product model
 class CategoryAdmin(admin.ModelAdmin):
 # fields to be displayed in the admin dashboard
-  list_display = ('name', 'category_image',)  # Display the category name
+  list_display = ('name', 'category_description', 'category_image',)  # Display the category name
 
 # admin.site.register(Category, CategoryAdmin)
 
@@ -21,3 +21,27 @@ class ProductModelAdmin(admin.ModelAdmin):
 class ContactModelAdmin(admin.ModelAdmin):
 # fields to be displayed in the admin dashboard
   list_display = ['id', 'phone_number', 'email', 'address', 'facebook']
+
+# Service Category model
+@admin.register(ServiceCategory) # registers the service category model
+class ServiceCategoryAdmin(admin.ModelAdmin):
+# fields to be displayed in the admin dashboard
+  list_display = ('name', 'category_description', 'category_image',)
+
+# Service model
+@admin.register(Service) # registers the service model
+class ServiceModelAdmin(admin.ModelAdmin):
+# fields to be displayed in the admin dashboard
+  list_display = ['id', 'name', 'category', 'description', 'service_image']
+
+# Sub Service model
+@admin.register(Subservice) # registers the service model
+class SubserviceModelAdmin(admin.ModelAdmin):
+# fields to be displayed in the admin dashboard
+  list_display = ['id', 'name', 'price']
+
+# Work Sample Image model
+@admin.register(WorkSampleImage) # registers the sample image model
+class WorkSampleImageAdmin(admin.ModelAdmin):
+# fields to be displayed in the admin dashboard
+  list_display = ['id', 'image','service', 'caption']
