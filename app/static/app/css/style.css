@@ -256,6 +256,7 @@ section {
 #services .col h2 {
   margin: 8px 0;
   font-size: 1.6rem;
+  text-transform: capitalize;
 }
 #services .btn {
   margin: 30px 0 0;
@@ -359,6 +360,10 @@ section {
   text-transform: capitalize;
   transition: var(--transition-duration);
 }
+#products .card h3 {
+  text-transform: capitalize;
+}
+#services a:hover,
 #products a:hover {
   color: var(--purple-clr);
 }
@@ -427,7 +432,7 @@ section {
   margin-bottom: 20px;
 }
 
-/*====== Contac Us =======*/
+/*====== Contact Us =======*/
 .location {
   width: 100%;
   padding: 0;
