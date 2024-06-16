@@ -41,7 +41,6 @@ class Contact(models.Model):
 
 # Service's Category Model
 class ServiceCategory(models.Model):
-  name_without_space = models.CharField(max_length=100, blank=True)
   name = models.CharField(max_length=100)
   category_description = models.TextField(null=True, blank=True)
   category_image = models.ImageField(upload_to='category_images')
