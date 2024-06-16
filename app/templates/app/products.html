@@ -31,6 +31,7 @@
 
   <article class="product-list-container">
     <ul class="categories">
+      <li><a class="" href="{% url 'all_products' %}">all</a></li>
       {% for category in categories %}
       <li>
         <a class="" href="{% url 'product_list' category.id %}">{{category}}</a>
