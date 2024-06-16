@@ -2,10 +2,10 @@ from django.db import models
 
 # Create your models here.
 # Product's Category Model
-class Category(models.Model):
+class ProductCategory(models.Model):
   name = models.CharField(max_length=100)
-  category_image = models.ImageField(upload_to='category_image')
-
+  category_description = models.TextField(null=True, blank=True)
+  category_image = models.ImageField(upload_to='category_images')
   # how it's gonna be displayed in the django admin
   def __str__(self):
     return self.name
@@ -15,11 +15,10 @@ class Product(models.Model):
   title = models.CharField(max_length=200)
   selling_price = models.FloatField()
   discounted_price = models.FloatField() 
-  description = models.TextField() 
+  category_description = models.TextField() 
   composition = models.TextField(default='')
-  category = models.ForeignKey(Category, on_delete=models.CASCADE) 
-  product_image = models.ImageField(upload_to='product')
-
+  category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE) 
+  product_image = models.ImageField(upload_to='product_images')
   # how it's gonna be displayed in the django admin
   def __str__(self):
     return self.title
@@ -35,8 +34,50 @@ class Contact(models.Model):
   instagram = models.CharField(max_length=255, blank=True) 
   tiktok = models.CharField(max_length=255, blank=True) 
   linkedin = models.CharField(max_length=255, blank=True)
-
   # how it's gonna be displayed in the django admin
   def __str__(self):
     # return f"Contact - {self.phone_number}"
     return f"ContactUs details"
+
+# Service's Category Model
+class ServiceCategory(models.Model):
+  name_without_space = models.CharField(max_length=100, blank=True)
+  name = models.CharField(max_length=100)
+  category_description = models.TextField(null=True, blank=True)
+  category_image = models.ImageField(upload_to='category_images')
+  # how it's gonna be displayed in the django admin
+  def __str__(self):
+    return self.name
+
+# Service Model
+class Service(models.Model):
+  name = models.CharField(max_length=255)
+  price = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True) 
+  description = models.TextField()
+  category = models.ForeignKey(ServiceCategory, related_name='services', on_delete=models.CASCADE) 
+  service_image = models.ImageField(upload_to='service_images', blank=True)
+  subservices = models.ManyToManyField('Subservice', related_name='parent_services', blank=True) # a many-to-many relationship with subservice.
+  work_samples = models.ManyToManyField('WorkSampleImage', blank=True, related_name='services') # Forward referencing the WorkSampleImage model
+  # how it's gonna be displayed in the django admin
+  def __str__(self):
+    return self.name
+  
+# Sub Service Model - different subservices that fall under a particular service
+class Subservice(models.Model):
+  name = models.CharField(max_length=255)
+  price = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True) 
+  image = models.ImageField(upload_to='service_images', blank=True)
+  description = models.TextField(blank=True)
+  # how it's gonna be displayed in the django admin
+  def __str__(self):
+    return self.name
+
+# Work Sample Image Model - different work samples done for each service
+class WorkSampleImage(models.Model):
+  image = models.ImageField(upload_to='service_images')
+  service = models.ForeignKey(Service, related_name='images', on_delete=models.CASCADE)
+  caption = models.CharField(max_length=255, blank=True)
+  # how it's gonna be displayed in the django admin
+  def __str__(self):
+    return f"{self.service.name} - {self.caption}"
+    # return 'Work Sample Images'
