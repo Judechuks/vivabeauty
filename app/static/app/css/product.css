@@ -35,7 +35,12 @@
   gap: 20px;
   justify-content: space-between;
 }
-
+.product-list .card {
+  display: grid;
+}
+.product-list .card .btn {
+  align-self: end;
+}
 /* number of products on different screen size */
 @media screen and (max-width: 1120px) {
   .product-list {
