@@ -3,6 +3,27 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 25px 15px;
 }
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.categories li a {
+  display: block;
+  color: var(--white-clr);
+  background: var(--purple-clr);
+  text-transform: uppercase;
+  padding: 5px;
+  border: 1px solid var(--purple-clr);
+  transition: var(--transition-duration-sm);
+}
+.categories li a:hover {
+  color: var(--purple-clr);
+  background: transparent;
+}
+
 .card {
   display: flex;
   overflow: hidden;
