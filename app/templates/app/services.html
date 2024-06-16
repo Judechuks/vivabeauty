@@ -21,15 +21,15 @@
 <section class="section-top-padding">
   <h1 class="section-title">our <span>services</span></h1>
   <p class="section-intro">
-    At Viva beauty home, we're passionate about making you look and feel your
-    best. Our team of skilled stylists offers a range of services to pamper your
-    hair and enhance your natural beauty. From precision cuts to vibrant color
-    treatments, we've got you covered. Step into our oasis of relaxation and let
-    us transform your locks into works of art. Book your appointment today!
+    We're passionate about making you look and feel your best. We offer a wide
+    range of services to pamper your hair and enhance your natural beauty. Step
+    into our oasis of relaxation and let us transform your looks into works of
+    art. Book your appointment today!
   </p>
 
   <div class="main-container">
     <ul class="categories">
+      <li><a class="" href="{% url 'all_services' %}">all</a></li>
       {% for category in categories %}
       <li>
         <a class="" href="{% url 'services' category.id %}">{{category}}</a>
@@ -41,29 +41,22 @@
       <!-- service item -->
       <article class="card">
         <div class="details">
-          <a href="{% url 'service_detail' service.id %}">
           <div>
-            <a href="#">
-              <h3 class="title">{{ service.name }}</h3> 
+            <a href="{% url 'service_detail' service.id %}">
+              <h3 class="title">{{ service.name }}</h3>
             </a>
-            <p class="overview">
-              If you're looking for state of the art extensions, or filling your
-              current eyelashes, Millennium can give you a bold look that lasts
-              for weeks.
-            </p>
+            <p class="overview">{{service.description}}</p>
           </div>
           <nav class="btn-group">
-            <a href="{% url 'service_detail' service.id %}">learn more</a
-            ><span class="separator"> | </span><a href="booking">book now</a>
+            <a href="{% url 'service_detail' service.id %}">learn more</a>
+            <span class="separator"> | </span>
+            <a href="booking">book now</a>
           </nav>
         </div>
         <aside>
-          <!-- <img
-            src="{% static 'app/images/makeup-tool.png' %}"
-            alt="service banner" />-->
           <img
-              src="{{ service.service_image.url }}"
-              alt="{{ service.title }}" /> 
+            src="{{ service.service_image.url }}"
+            alt="{{ service.title }}" />
         </aside>
       </article>
       {% endfor %}
