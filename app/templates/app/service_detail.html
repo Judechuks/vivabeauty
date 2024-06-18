@@ -4,6 +4,9 @@
 <!-- loading static files -->
 {% load static %}
 
+<!-- loading custom_filter for price -->
+{% load custom_filters %}
+
 <!-- head block -->
 {% block head %}
 <!-- product_detail.css file -->
@@ -16,64 +19,55 @@
 <!-- main products list block -->
 {% block main-content %}
 <section class="section-top-padding">
-  <h1 class="section-title">
-    {{ selected_category.name }}<span>service</span>
-  </h1>
-  <div class="service-col-1">
-    <article class="service-detail">
-      <div class="img-container">
-        <div class="main-img">
-          {% comment %}
-          <img
-            src="{{ service.service_image.url }}"
-            alt="{{ service.title }}" />
-          {% endcomment %}
-          <img
-            src="{% static 'app/images/makeup-tool.png' %}"
-            alt="service.title" />
-        </div>
-        <div class="sample-images">
-          <figure>
-            <img
-              src="{% static 'app/images/makeup-tool.png' %}"
-              alt="service.title" />
-          </figure>
-          <figure>
-            <img
-              src="{% static 'app/images/makeup-tool.png' %}"
-              alt="service.title" />
-          </figure>
-          <figure>
-            <img
-              src="{% static 'app/images/makeup-tool.png' %}"
-              alt="service.title" />
-          </figure>
-          <figure>
-            <img
-              src="{% static 'app/images/makeup-tool.png' %}"
-              alt="service.title" />
-          </figure>
-        </div>
-      </div>
-      <aside>
-        {% comment %}
-        <h3 class="title">{{ service.title }}</h3>
-        {% endcomment %}
-        <h2 class="title">service.title</h2>
-        <p class="price">2000</p>
-        <small class="small">+ payment will be made before service.</small>
-        <a href="/booking" class="btn">book now</a>
-      </aside>
-    </article>
+  <h1 class="section-title">service <span>details</span></h1>
+  <article class="service-detail">
+    <div class="img-container">
+      <img src="{{ service.service_image.url }}" alt="{{ service.title }}" />
+    </div>
+    <aside>
+      <h2 class="title">{{service.name}}</h2>
+      <p class="desc">{{service.description}}</p>
+      {% if service.price %}
+      <p class="price">&#x20A6;{{service.price|format_with_commas}}</p>
+      <small class="small">+ payment will be made before service.</small>
+      <a href="/booking" class="btn">book now</a>
+      {% endif %}
+    </aside>
+  </article>
 
+  <article class="service-row">
+    {% for subservice in service.subservices.all %}
     <div class="col">
-      <h2>Description</h2>
-      <p>service.description</p>
+      <div>
+        <h3>{{ subservice.name }}</h3>
+        <p>{{subservice.description}}</p>
+        {% if subservice.price %}
+        <p class="price">&#x20A6;{{subservice.price|format_with_commas}}</p>
+        <small class="small">+ payment will be made before service.</small>
+        {% endif %}
+      </div>
+      {% if subservice.price %}
+      <a href="/booking" class="btn">book now</a>
+      {% endif %}
     </div>
-    <div class="col">
-      <h2>Composition</h2>
-      <p>service.composition</p>
+    {% endfor %}
+  </article>
+
+  {% if service.work_samples.all %}
+  <article class="sample-container swiper-container">
+    <h3>Work Samples</h3>
+    <div class="sample-images swiper-wrapper">
+      {% for work_sample in service.work_samples.all %}
+      <figure class="swiper-slide">
+        <img
+          src="{{ work_sample.image.url }}"
+          alt="{{ work_sample.caption }}" />
+      </figure>
+      {% endfor %}
     </div>
-  </div>
+    <!--==== Add Pagination ====-->
+    <div class="work swiper-pagination"></div>
+  </article>
+  {% endif %}
 </section>
 {% endblock main-content %}
