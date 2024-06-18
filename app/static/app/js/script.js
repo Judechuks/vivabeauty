@@ -32,5 +32,27 @@ let swiperReview = new Swiper(".review-container", {
   },
 });
 
+/* Sample Work Images Swiper */
+let swiperWorkSample = new Swiper(".sample-container", {
+  loop: true,
+  grabCursor: true,
+  spaceBetween: 10,
+
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+    dynamicBullets: true,
+  },
+
+  breakpoints: {
+    1000: {
+      slidesPerView: 3,
+    },
+    650: {
+      slidesPerView: 2,
+    },
+  },
+});
+
 // footer get full year
 document.querySelector("span.year").innerHTML = new Date().getFullYear();
