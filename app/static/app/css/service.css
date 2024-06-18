@@ -6,7 +6,7 @@
 .categories {
   display: flex;
   flex-wrap: wrap;
-  gap: 1px;
+  gap: 2px;
   text-align: center;
   margin-bottom: 20px;
 }
@@ -35,17 +35,21 @@
   background: rgb(128, 0, 128, 0.1);
 }
 .details .title {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
+}
+.details p {
+  font-size: 1.1rem;
+  line-height: 1.2;
 }
 .btn-group {
   background: rgb(128, 0, 128, 0.4);
-  padding: 6px 0px;
+  padding: 4px 0px;
   margin-block: 10px;
   text-align: center;
   border-radius: 20px;
 }
 .btn-group a {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: var(--white-clr);
   text-transform: capitalize;
 }
@@ -55,7 +59,7 @@
 .btn-group .separator {
   color: var(--purple-clr);
   line-height: 0;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
 }
 .card aside {
   flex-basis: 35%;
