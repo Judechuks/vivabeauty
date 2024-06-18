@@ -15,7 +15,7 @@ class Product(models.Model):
   title = models.CharField(max_length=200)
   selling_price = models.FloatField()
   discounted_price = models.FloatField() 
-  category_description = models.TextField() 
+  description = models.TextField() 
   composition = models.TextField(default='')
   category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE) 
   product_image = models.ImageField(upload_to='product_images')
@@ -51,12 +51,10 @@ class ServiceCategory(models.Model):
 # Service Model
 class Service(models.Model):
   name = models.CharField(max_length=255)
-  price = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True) 
-  description = models.TextField()
+  price = models.DecimalField(max_digits=100, decimal_places=2, blank=True, null=True) 
+  description = models.TextField(blank=True)
   category = models.ForeignKey(ServiceCategory, related_name='services', on_delete=models.CASCADE) 
   service_image = models.ImageField(upload_to='service_images', blank=True)
-  subservices = models.ManyToManyField('Subservice', related_name='parent_services', blank=True) # a many-to-many relationship with subservice.
-  work_samples = models.ManyToManyField('WorkSampleImage', blank=True, related_name='services') # Forward referencing the WorkSampleImage model
   # how it's gonna be displayed in the django admin
   def __str__(self):
     return self.name
@@ -64,17 +62,18 @@ class Service(models.Model):
 # Sub Service Model - different subservices that fall under a particular service
 class Subservice(models.Model):
   name = models.CharField(max_length=255)
-  price = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True) 
+  price = models.DecimalField(max_digits=100, decimal_places=2, blank=True, null=True) 
   image = models.ImageField(upload_to='service_images', blank=True)
   description = models.TextField(blank=True)
+  service = models.ForeignKey(Service, related_name='subservices', on_delete=models.CASCADE, null=True)
   # how it's gonna be displayed in the django admin
   def __str__(self):
     return self.name
 
 # Work Sample Image Model - different work samples done for each service
 class WorkSampleImage(models.Model):
-  image = models.ImageField(upload_to='service_images')
-  service = models.ForeignKey(Service, related_name='images', on_delete=models.CASCADE)
+  image = models.ImageField(upload_to='work_samples')
+  service = models.ForeignKey(Service, related_name='work_samples', on_delete=models.CASCADE)
   caption = models.CharField(max_length=255, blank=True)
   # how it's gonna be displayed in the django admin
   def __str__(self):
