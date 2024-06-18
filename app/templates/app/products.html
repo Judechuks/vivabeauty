@@ -1,4 +1,4 @@
-<!-- inheriting the codes, links, etc from the index.html -->
+<!-- inheriting the codes, links, etc from the base.html -->
 {% extends 'app/base.html' %}
 
 <!-- loading static files -->
@@ -34,7 +34,7 @@
       <li><a class="" href="{% url 'all_products' %}">all</a></li>
       {% for category in categories %}
       <li>
-        <a class="" href="{% url 'product_list' category.id %}">{{category}}</a>
+        <a class="" href="{% url 'products' category.id %}">{{category}}</a>
       </li>
       {% endfor %}
     </ul>
