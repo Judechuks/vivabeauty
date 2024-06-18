@@ -66,4 +66,12 @@ Final project for the scholarship I received from PowerLearnProject Academy, whe
 
   `pip install pillow`
 
+- ### Python-dotenv
+
+  Python-dotenv library allows you to access secrets keys, credentials or variables that you don't want to make public from the .env file.
+
+  #### Installation:
+
+  `pip install python-dotenv`
+
 ---
