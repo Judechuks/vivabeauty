@@ -1,0 +1,64 @@
+<!-- inheriting the codes, links, etc from the base.html -->
+{% extends 'app/base.html' %}
+
+<!-- loading static files -->
+{% load static %}
+
+<!-- head block -->
+{% block head %}
+<!-- account.css file -->
+<link rel="stylesheet" href="{% static 'app/css/account.css' %}" />
+{% endblock head %}
+
+<!-- document title -->
+{% block title %}Viva Beauty Home | Signin Page{% endblock title %}
+
+<!-- Registration page -->
+{% block main-content %}
+<section class="section-top-padding">
+  <article class="registration-container">
+    <div class="col">
+      <img
+        src="{% static 'app/images/signup.jpeg' %}"
+        alt="a shopping cart with a phone" />
+    </div>
+    <div class="col form-col">
+      <h2>Login</h2>
+      <p>Welcome back! Enter your Login details</p>
+      <form action="" method="post" novalidate>
+        {% csrf_token %}
+        <!-- interating over the form -->
+        {%for fm in form%}
+        <!-- form label -->
+        <!--{{fm.label_tag}}-->
+        {{fm}}
+        <p class="error-msg">{{fm.errors|striptags}}</p>
+        {% endfor %}
+        <button type="submit" class="btn">Login</button>
+
+        <!-- displaying error message if credentials are incorrect or if there is form error 
+        {% if form.non_field_errors %}
+        <p class="error-msg">{{ form.non_field_errors }}</p>
+        {% endif %}-->
+
+        <!-- displaying a message if credentials are incorrect or if there is form error -->
+        {% if form.errors %}
+        <p class="error-msg">
+          Please enter a correct username and password. Note that both fields
+          may be case-sensitive.
+        </p>
+        {% endif %}
+
+        <div class="link-container">
+          Forgot Password?
+          <a href="{%url 'password_reset' %}">Reset Password</a>
+        </div>
+        <div class="link-container">
+          Don't have an account?
+          <a href="{%url 'register' %}">Create an account</a>
+        </div>
+      </form>
+    </div>
+  </article>
+</section>
+{% endblock main-content %}
