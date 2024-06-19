@@ -43,6 +43,7 @@
         <menu class="dropdown-sidemenu">
           <li class="user-profile">User</li>
           <ul>
+            <li><a href="{% url 'register' %}">Registration</a></li>
             <li><a href="#">Profile</a></li>
             <li><a href="#">Orders</a></li>
             <li><a href="#">Change Password</a></li>
@@ -118,18 +119,16 @@
           <h2>Contact</h2>
           <ul>
             <li>
-              <a href="tel:{{contact_info.phone_number}}">
-                Call: {{contact_info.phone_number}}
+              <a href="tel:{{admin_phone_number}}">
+                Call: {{admin_phone_number}}
               </a>
             </li>
             <li>
-              <a href="mailto:{{contact_info.email}}">
-                {{contact_info.email}}
-              </a>
+              <a href="mailto:{{admin_email}}"> {{admin_email}} </a>
             </li>
             <li>
-              <a href="https://maps.google.com/?q='{{contact_info.address}}'"
-                >{{contact_info.address}}</a
+              <a href="https://maps.google.com/?q='{{admin_address}}'"
+                >{{admin_address}}</a
               >
             </li>
           </ul>
@@ -140,43 +139,43 @@
         <!-- social media handles -->
         <div class="social-icons">
           <!--facebook icon and link-->
-          {% if contact_info.facebook %}
-          <a href="{{contact_info.facebook}}" target="_blank"
+          {% if admin_facebook %}
+          <a href="{{admin_facebook}}" target="_blank"
             ><i class="fab fa-square-facebook"></i
           ></a>
           {% endif %}
 
           <!--whatsapp icon and link-->
-          {% if contact_info.whatsapp %}
-          <a href="{{contact_info.whatsapp}}" target="_blank"
+          {% if admin_whatsapp %}
+          <a href="{{admin_whatsapp}}" target="_blank"
             ><i class="fab fa-square-whatsapp"></i
           ></a>
           {% endif %}
 
           <!--twitter icon and link-->
-          {% if contact_info.twitter %}
-          <a href="{{contact_info.twitter}}" target="_blank"
+          {% if admin_twitter %}
+          <a href="{{admin_twitter}}" target="_blank"
             ><i class="fab fa-square-x-twitter"></i
           ></a>
           {% endif %}
 
           <!--instagram icon and link-->
-          {% if contact_info.instagram %}
-          <a href="{{contact_info.instagram}}" target="_blank"
+          {% if admin_instagram %}
+          <a href="{{admin_instagram}}" target="_blank"
             ><i class="fab fa-square-instagram"></i
           ></a>
           {% endif %}
 
           <!--tiktok icon and link-->
-          {% if contact_info.tiktok %}
-          <a href="{{contact_info.tiktok}}" target="_blank"
+          {% if admin_tiktok %}
+          <a href="{{admin_tiktok}}" target="_blank"
             ><i class="fab fa-tiktok"></i
           ></a>
           {% endif %}
 
           <!--linkedin icon and link-->
-          {% if contact_info.linkedin %}
-          <a href="{{contact_info.linkedin}}" target="_blank"
+          {% if admin_linkedin %}
+          <a href="{{admin_linkedin}}" target="_blank"
             ><i class="fab fa-linkedin"></i
           ></a>
           {% endif %}
