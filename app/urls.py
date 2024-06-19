@@ -15,4 +15,6 @@ urlpatterns = [
   path('service_categories/', views.service_categories, name='services_categories'),
   path('services/<int:category_id>/', views.services, name='services'),
   path('service_detail/<int:service_id>', views.service_detail, name='service_detail'),
+  # login authentication
+  path('registration', views.customerRegistrationView.as_view(), name='register'),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # to include the url to the upload images in the media folder
