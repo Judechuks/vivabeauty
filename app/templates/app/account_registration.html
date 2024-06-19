@@ -24,7 +24,7 @@
     </div>
     <div class="col form-col">
       <h2>Create an account</h2>
-      <p>Fill all inputs marked with *</p>
+      <p class="fill_in_info">Fill all inputs marked with *</p>
       <form action="" method="post" novalidate>
         {% csrf_token %}
         <!-- interating over the form -->
@@ -49,9 +49,9 @@
         <p class="alert alert-{{msg.tags}}" role="alert">{{msg}}</p>
         {% endfor %}
 
-        <div class="returning-user">
+        <div class="link-container">
           Already have an account?
-          <a href="{%url 'register' %}">Login</a>
+          <a href="{%url 'login' %}">Login</a>
         </div>
       </form>
     </div>
