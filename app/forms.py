@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField, PasswordChangeForm
 from django.contrib.auth.models import User
 
 # CustomerRegistration form
@@ -41,3 +41,23 @@ class CustomerRegistrationForm(UserCreationForm):
     if User.objects.filter(email=email).exists():
       raise forms.ValidationError('This email address is already registered.')
     return email
+  
+# Login Form
+class LoginForm(AuthenticationForm):
+  username = UsernameField(widget=forms.TextInput(attrs={
+    'autofocus': 'True', 
+    'placeholder': 'Username *', 
+    'class': 'form-control'
+    })
+  )
+  password = forms.CharField(widget=forms.PasswordInput(attrs={
+    'autocomplete': 'current-password *', 
+    'placeholder': 'Password *', 
+    'class': 'form-control'
+    })
+  )
+
+# Password Reset Form
+class MyPasswordResetForm(PasswordChangeForm):
+  # inheriting the PasswordChangeForm from django
+  pass
