@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+from .api_utils import get_countries
 
 # Create your models here.
 # Product's Category Model
@@ -79,3 +81,18 @@ class WorkSampleImage(models.Model):
   def __str__(self):
     return f"{self.service.name} - {self.caption}"
     # return 'Work Sample Images'
+
+# Customer's Profile Model
+class Customer(models.Model):
+  #user = models.ForeignKey(User, on_delete=models.CASCADE, default=None) # displays all authenticated users
+  user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True) # authenticated user
+  full_name = models.CharField(max_length=100)
+  country = models.CharField(choices=get_countries(), max_length=100) # countries to be gotten from an API in the api_utils.py
+  state = models.CharField(max_length=100)
+  city = models.CharField(max_length=100)
+  zipcode = models.CharField(max_length=10)
+  phone_number = models.CharField(max_length=20)
+  address = models.CharField(max_length=255)
+  # how it's gonna be displayed in the django admin
+  def __str__(self):
+    return self.full_name
