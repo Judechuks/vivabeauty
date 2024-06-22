@@ -1,0 +1,119 @@
+.section-top-padding {
+  min-height: 72vh;
+  display: grid;
+  align-content: center;
+}
+.profile-container {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  display: flex;
+  gap: 40px;
+}
+.profile-container .col:first-child {
+  flex-basis: 40%;
+}
+.profile-container .col:last-child {
+  flex-basis: 60%;
+}
+.profile-container .col:first-child img {
+  width: 100%;
+}
+.form-col h2 {
+  font-size: 2rem;
+  font-weight: 500;
+}
+.error-msg,
+.form-col .fill_in_info {
+  font-size: 1.05rem;
+  color: rgb(255, 13, 13);
+}
+form {
+  margin-top: 20px;
+}
+.form-control {
+  display: block;
+  width: 100%;
+  font-size: 1.1rem;
+  padding: 5px 8px;
+  border: none;
+  border-radius: 4px;
+  margin-bottom: 30px;
+  outline: 2px solid gray;
+}
+.form-control:focus {
+  border-color: var(--purple-clr);
+}
+.form-control::placeholder {
+  font-size: 1.1rem;
+}
+.form-col .btn {
+  display: block;
+  width: 100%;
+  font-size: 1.1rem;
+  padding-block: 14px;
+  margin-block: 30px;
+}
+.alert {
+  padding: 4px;
+  border-radius: 5px;
+  text-align: center;
+  color: var(--white-clr);
+}
+.alert-success {
+  background-color: rgb(2, 53, 2);
+  color: rgb(13, 255, 13);
+}
+.alert-warning {
+  background-color: rgb(53, 2, 2);
+  color: rgb(255, 13, 13);
+}
+.form-col .alert {
+  color: rgb(255, 13, 13);
+  animation: timeout 10s forwards;
+}
+.details p {
+  margin-block: 6px;
+}
+.details p span {
+  font-weight: 500;
+}
+.details .btn {
+  margin-top: 15px;
+  padding: 8px 15px;
+}
+.btn-outline:hover {
+  color: var(--purple-clr);
+}
+/*======= ANIMATION =======*/
+@keyframes timeout {
+  0%,
+  100% {
+    display: none;
+  }
+  30% {
+    display: block;
+  }
+}
+
+/*======= MEDIA QUERY =======*/
+@media screen and (max-width: 1020px) {
+  .col:first-chil {
+    display: none;
+  }
+  .form-col {
+    flex-basis: 100%;
+    max-width: 600px;
+    margin-inline: auto;
+  }
+}
+@media screen and (max-width: 1020px) {
+  .col:first-chil {
+    display: none;
+  }
+  .form-col {
+    flex-basis: 100%;
+    max-width: 600px;
+    margin-inline: auto;
+  }
+}
