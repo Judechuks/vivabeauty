@@ -23,4 +23,8 @@ urlpatterns = [
   path('accounts/login/', auth_view.LoginView.as_view(template_name='app/account_login.html', authentication_form=LoginForm), name='login'), 
   # already made password reset view from django - PasswordResetView
   path('password_reset/', auth_view.PasswordResetView.as_view(template_name='app/password_reset.html', form_class=MyPasswordResetForm), name='password_reset'), 
+  # profile page url
+  path('profile/', views.ProfileView.as_view(), name='profile'),
+  path('profile_details/', views.profile_details, name='profile_details'),
+  path('profile_update/', views.ProfileUpdate.as_view(), name='profile_update'),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # to include the url to the upload images in the media folder
