@@ -29,7 +29,7 @@ dotenv.load_dotenv()
 SECRET_KEY = os.environ.get('YOUR_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG') == 'True'
 
 ALLOWED_HOSTS = []
 
@@ -125,8 +125,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 # media from admin panel
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR/'media'
+MEDIA_URL = '/media/' # directory to upload image
+MEDIA_ROOT = BASE_DIR/'media' # path to uploaded images
+LOGIN_REDIRECT_URL = '/profile_details/' # redirects to profile url after login
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
