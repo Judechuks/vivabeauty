@@ -1,0 +1,66 @@
+<!-- inheriting the codes, links, etc from the base.html -->
+{% extends 'app/base.html' %}
+
+<!-- loading static files -->
+{% load static %}
+
+<!-- head block -->
+{% block head %}
+<!-- profile.css file -->
+<link rel="stylesheet" href="{% static 'app/css/profile.css' %}" />
+{% endblock head %}
+
+<!-- document title -->
+{% block title %}Viva Beauty Home | Profile Page{% endblock title %}
+
+<!-- Profile page -->
+{% block main-content %}
+<section class="section-top-padding">
+<div class="welcome-user"><h3>Welcome {{request.user|capfirst}}!</h3></div>
+  <article class="profile-container">
+    {% if details %}
+    <!-- if user have details -->
+    <div class="col profile-btn-container">
+      <a href="{% url 'profile_details' %}" class="btn active">profile Details</a>
+      <a href="{% url 'profile_update' %}" class="btn">update profile</a>
+    </div>
+    {% else %}
+    <!-- if user does not have details -->
+    <div class="col profile-btn-container">
+      <a href="{% url 'profile_details' %}" class="btn active">profile Details</a>
+      <a href="{% url 'profile' %}" class="btn">create profile</a>
+    </div>
+    {% endif %}
+    <div class="col">
+    <div class="col">
+      <h2>Profile Details</h2>
+      {% if details %}
+      {% for detail in details %}
+      <div class="details">
+      <p><span>Full Name:</span> {{detail.full_name}}</p>
+      <p><span>Country:</span> {{detail.country}}</p>
+      <p><span>State:</span> {{detail.state}}</p>
+      <p><span>City:</span> {{detail.city}}</p>
+      <p><span>Zipcode:</span> {{detail.zipcode}}</p>
+      <p><span>Phone Number:</span> {{detail.phone_number}}</p>
+      <p><span>Address:</span> {{detail.address}}</p>
+    <!-- if user have details then an update button -->
+      <a href="{% url 'profile_update' %}" class="btn btn-outline update-btn">Update profile</a>
+      </div>
+      {% endfor %}
+      {% else %}
+      <div class="details">
+      <p><span>Full Name:</span> {{detail.full_name}}</p>
+      <p><span>Country:</span> {{detail.country}}</p>
+      <p><span>State:</span> {{detail.state}}</p>
+      <p><span>City:</span> {{detail.city}}</p>
+      <p><span>Zipcode:</span> {{detail.zipcode}}</p>
+      <p><span>Phone Number:</span> {{detail.phone_number}}</p>
+      <p><span>Address:</span> {{detail.address}}</p>
+    <!-- if user does not have details then a create button -->
+      <a href="{% url 'profile' %}" class="btn btn-outline update-btn">create profile</a>
+      {% endif %}
+    </div>
+  </article>
+</section>
+{% endblock main-content %}
