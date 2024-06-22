@@ -5,7 +5,7 @@
 }
 .registration-container {
   display: flex;
-  gap: 60px;
+  gap: 40px;
 }
 .col {
   flex-basis: 50%;
@@ -70,10 +70,12 @@ form {
   color: var(--white-clr);
 }
 .alert-success {
-  background-color: rgb(13, 255, 13);
+  background-color: rgb(2, 53, 2);
+  color: rgb(13, 255, 13);
 }
 .alert-warning {
-  background-color: rgb(255, 13, 13);
+  background-color: rgb(53, 2, 2);
+  color: rgb(255, 13, 13);
 }
 .form-col .error-msg {
   color: rgb(255, 13, 13);
