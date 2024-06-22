@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.views import View
-from .models import ProductCategory, Product, Contact, ServiceCategory, Service
-from . forms import CustomerRegistrationForm
+from .models import ProductCategory, Product, Contact, ServiceCategory, Service, Customer
+from . forms import CustomerRegistrationForm, CustomerProfileForm
 from django.contrib import messages
 
 # Create your views here.
@@ -123,4 +123,58 @@ class customerRegistrationView(View):
       messages.success(request, 'Congratulations, account created successfully!')
     else:
       messages.warning(request, 'Invalid details, try again!')
-    return render(request, 'app/account_registration.html', locals())
+    return redirect('/accounts/login')
+
+# profile view
+class ProfileView(View):
+  def get(self, request):
+    form = CustomerProfileForm()  
+    return render(request, 'app/profile.html', locals())
+  
+  def post(self, request):
+    form = CustomerProfileForm(request.POST)
+    if form.is_valid():
+      user = request.user
+      full_name = form.cleaned_data['full_name']
+      country = form.cleaned_data['country']
+      state = form.cleaned_data['state']
+      city = form.cleaned_data['city']
+      zipcode = form.cleaned_data['zipcode']
+      phone_number = form.cleaned_data['phone_number']
+      address = form.cleaned_data['address']
+      # customer object
+      req = Customer(user=user, full_name=full_name, country=country, state=state, city=city, zipcode=zipcode, phone_number=phone_number, address=address)
+      req.save()
+      messages.success(request, 'Profile updated successfully!')
+    else:
+      messages.warning(request, 'Invalid details')
+    return render(request, 'app/profile.html', locals())
+  
+# profile_detail view - displays user's profile details
+def profile_details(request):
+  details = Customer.objects.filter(user=request.user) # get the current logged in user
+  return render(request, 'app/profile_details.html', locals())
+
+# update_profile view
+class ProfileUpdate(View):
+  def get(self, request): 
+    details = Customer.objects.get(user=request.user) # get the current logged in user
+    form = CustomerProfileForm(instance=details) # pass fetched data to the input fields
+    return render(request, 'app/profile_update.html', locals())
+  def post(self, request):
+    form = CustomerProfileForm(request.POST)
+    if form.is_valid():
+      details = Customer.objects.get(user=request.user) # get the current logged in user
+      details.full_name = form.cleaned_data['full_name']
+      details.country = form.cleaned_data['country']
+      details.state = form.cleaned_data['state']
+      details.city = form.cleaned_data['city']
+      details.zipcode = form.cleaned_data['zipcode']
+      details.phone_number = form.cleaned_data['phone_number']
+      details.address = form.cleaned_data['address']
+      # save details to the details object
+      details.save()
+      messages.success(request, 'Profile updated successfully!')
+    else:
+      messages.warning(request, 'Invalid details')
+    return redirect('profile_details')
