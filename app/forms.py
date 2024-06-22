@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField, PasswordChangeForm
 from django.contrib.auth.models import User
+from .models import Customer
 
 # CustomerRegistration form
 class CustomerRegistrationForm(UserCreationForm):
@@ -61,3 +62,18 @@ class LoginForm(AuthenticationForm):
 class MyPasswordResetForm(PasswordChangeForm):
   # inheriting the PasswordChangeForm from django
   pass
+
+# Customer's profile Form
+class CustomerProfileForm(forms.ModelForm):
+  class Meta:
+    model = Customer
+    fields = ['full_name', 'country', 'state', 'city', 'zipcode', 'phone_number', 'address']
+    widgets = {
+      'full_name': forms.TextInput(attrs={'autofocus': 'True', 'class': 'form-control'}),
+      'phone_number': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'+234**********', 'pattern':'+[0-9]{11,}', 'title':'NUMBERS ONLY AND SHOULD NOT BE LESS THAN 11 DIGITS'}),
+      'country': forms.Select(attrs={'class': 'form-control'}),
+      'state': forms.TextInput(attrs={'class': 'form-control'}),
+      'city': forms.TextInput(attrs={'class': 'form-control'}),
+      'zipcode': forms.TextInput(attrs={'class': 'form-control'}),
+      'address': forms.TextInput(attrs={'class': 'form-control'}),
+    }
