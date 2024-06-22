@@ -831,3 +831,28 @@ footer .divider {
   border-radius: 4px;
   cursor: grab;
 }
+
+/*==== profile styles ====*/
+.welcome-user {
+  margin-bottom: 15px;
+  text-align: right;
+}
+.profile-btn-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  gap: 2px;
+}
+.profile-btn-container .btn {
+  background-color: transparent;
+  color: var(--purple-clr);
+}
+.profile-btn-container .active {
+  background-color: var(--purple-clr);
+  color: var(--white-clr);
+}
+@media screen and (max-width: 980px) {
+  .profile-container {
+    flex-direction: column;
+  }
+}
