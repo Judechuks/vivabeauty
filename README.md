@@ -74,4 +74,21 @@ Final project for the scholarship I received from PowerLearnProject Academy, whe
 
   `pip install python-dotenv`
 
+- ### Requests
+
+  Requests allows you to an external API request to an endpoint or an API url. To make an API reuest you will need to install request
+
+  #### Installation:
+
+  `pip install requests`
+
+---
+
+### Country State City API
+
+#### [Link]('https://countrystatecity.in/')
+
+This API is used to get the list of countries, states and cities
+This API was used in the CustomerProfileForm to provide list of countries that customer's can select from.
+
 ---
