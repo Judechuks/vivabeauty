@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField, PasswordChangeForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField, PasswordChangeForm, PasswordResetForm, SetPasswordForm
 from django.contrib.auth.models import User
 from .models import Customer
 
@@ -81,6 +81,12 @@ class CustomerPasswordChangeForm(PasswordChangeForm):
   new_password2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput(attrs={'placeholder': 'Enter new password again', 'class': 'form-control'}))
 
 # Customer's Password Reset Form - for customers to reset their password if forgotten
-class CustomerPasswordResetForm(PasswordChangeForm):
-  # inheriting the PasswordChangeForm from django
-  pass
+class CustomerPasswordResetForm(PasswordResetForm):
+  # inheriting the PasswordResetForm from django
+  email = forms.EmailField(widget=forms.EmailInput(attrs={'autofocus': 'True', 'placeholder': 'Enter Email', 'class': 'form-control'}))
+
+# Customer's Set Password Form - for customers to enter new password
+class CustomerSetPasswordForm(SetPasswordForm):
+  # inheriting the SetPasswordForm from django
+  new_password1 = forms.CharField(label='New Password', widget=forms.PasswordInput(attrs={'autofocus': 'True', 'placeholder': 'Enter a new password', 'class': 'form-control'}))
+  new_password2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput(attrs={'placeholder': 'Enter new password again', 'class': 'form-control'}))
