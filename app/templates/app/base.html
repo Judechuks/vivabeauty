@@ -31,6 +31,7 @@
     {% block head %}{% endblock head %}
   </head>
   <body>
+    <!-- Desktop header -->
     <header class="header">
       <a href="/" class="brand">
         <h1>Viva<span>beauty</span></h1>
@@ -41,9 +42,10 @@
       </ul>
       <div class="side-menu">
         <menu class="dropdown-sidemenu">
-          <li class="user-profile">User</li>
+          <!-- if user is is_authenticated then display this menu -->
+          {% if request.user.is_authenticated %}
+          <li class="user-profile">{{request.user|capfirst}}</li>
           <ul>
-            <li><a href="{% url 'register' %}">Registration</a></li>
             <li><a href="{% url 'profile_details' %}">Profile</a></li>
             <li><a href="#">Orders</a></li>
             <li><a href="{% url 'password_change' %}">Change Password</a></li>
@@ -57,16 +59,72 @@
               </form>
             </li>
           </ul>
+          {% else %}
+          <!-- otherwise display this menu -->
+          <li class="user-profile">Account</li>
+          <ul>
+            <li><a href="{% url 'register' %}">Register</a></li>
+            <li><a href="{% url 'login' %}">Login</a></li>
+          </ul>
+          {% endif %}
         </menu>
+
         <div class="cart">
           <i class="fa fa-shopping-cart"></i> <span>0</span>
         </div>
-        <div class="favorite"><i class="fa fa-bookmark"></i><span>0</span></div>
+        <div class="favorite"><i class="fa fa-heart"></i><span>0</span></div>
       </div>
-      <!--========= HAMBURGER =========-->
-      <div class="hamburger">
-        <div class="bar"></div>
-      </div>
+    </header>
+
+    <!-- Mobile header -->
+    <header class="mobile-header">
+      <a href="/" class="brand">
+        <h1>Viva<span>beauty</span></h1>
+      </a>
+      <!--======= NAV LINKS =======-->
+      <nav>
+        <ul class="nav-links">
+          <!-- to be populated by the script.js file -->
+        </ul>
+        <div class="side-menu">
+          <menu class="dropdown-sidemenu">
+            <!-- if user is is_authenticated then display this menu -->
+            {% if request.user.is_authenticated %}
+            <li class="user-profile">{{request.user|capfirst}}</li>
+            <ul>
+              <li><a href="{% url 'profile_details' %}">Profile</a></li>
+              <li><a href="#">Orders</a></li>
+              <li><a href="{% url 'password_change' %}">Change Password</a></li>
+              <li>
+                <form
+                  method="post"
+                  action="{% url 'logout' %}"
+                  class="logout-form">
+                  {% csrf_token %}
+                  <button type="submit">Logout</button>
+                </form>
+              </li>
+            </ul>
+            {% else %}
+            <!-- otherwise display this menu -->
+            <li class="user-profile">Account</li>
+            <ul>
+              <li><a href="{% url 'register' %}">Register</a></li>
+              <li><a href="{% url 'login' %}">Login</a></li>
+            </ul>
+            {% endif %}
+          </menu>
+
+          <div class="cart">
+            <i class="fa fa-shopping-cart"></i> <span>0</span>
+          </div>
+          <div class="favorite"><i class="fa fa-heart"></i><span>0</span></div>
+        </div>
+        <!--========= HAMBURGER =========-->
+        <div class="hamburger">
+          <div class="bar"></div>
+        </div>
+      </nav>
     </header>
 
     <!--======== MAIN CONTENT ========-->
