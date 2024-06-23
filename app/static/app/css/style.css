@@ -115,7 +115,8 @@ section {
   transition: 0.4s;
 }
 .nav-links a:hover,
-.dropdown-sidemenu a:hover {
+.dropdown-sidemenu a:hover,
+.logout-form button:hover {
   color: var(--pink-clr);
 }
 /*---- side menu ----*/
@@ -153,6 +154,18 @@ section {
 .dropdown-sidemenu li a {
   font-size: 1rem;
   display: block;
+}
+.logout-form {
+  margin: 0;
+  padding: 0;
+}
+.logout-form button {
+  outline: none;
+  border: none;
+  font-size: 1rem;
+  background-color: transparent;
+  color: inherit;
+  cursor: pointer;
 }
 
 /*---- favorite and cart ----*/
