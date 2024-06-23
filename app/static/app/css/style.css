@@ -78,9 +78,9 @@ section {
 }
 
 /*======= Header =======*/
+.mobile-header,
 .header {
   width: 100%;
-  display: flex;
   justify-content: space-between;
   align-items: center;
   background: var(--purple-clr);
@@ -89,12 +89,47 @@ section {
   top: 0;
   z-index: 5;
 }
-.header a {
+.mobile-header {
+  display: none;
+}
+.mobile-header nav {
+  display: flex;
+  gap: 18px;
+}
+.header {
+  display: flex;
+}
+.header a,
+.mobile-header a {
   color: var(--white-clr);
 }
 .header ul {
   margin: 0;
   padding: 0;
+}
+.mobile-header .nav-links {
+  position: fixed;
+  top: 76px;
+  right: 0;
+  left: 0;
+  height: 0;
+  overflow: hidden;
+  transition: var(--transition-duration);
+  background-color: var(--purple-clr);
+  display: grid;
+  align-content: start;
+}
+.mobile-header .nav-links.active {
+  height: 32vh;
+}
+.mobile-header .nav-links li {
+  display: block;
+}
+.mobile-header .nav-links li:hover {
+  background: var(--dark-purple-clr);
+}
+.mobile-header .nav-links a {
+  display: block;
 }
 .brand {
   font-family: "MonteCarlo", cursive;
@@ -122,14 +157,15 @@ section {
 /*---- side menu ----*/
 .side-menu {
   display: flex;
-  gap: 20px;
+  gap: 15px;
   align-items: baseline;
 }
 /*---- dropdown menu----*/
 .dropdown-sidemenu {
   color: var(--white-clr);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   position: relative;
+  margin-right: -15px;
 }
 .dropdown-sidemenu .user-profile:hover {
   cursor: pointer;
@@ -175,12 +211,12 @@ section {
   cursor: pointer;
 }
 .side-menu .fa {
-  font-size: 1.4rem;
+  font-size: 1.1rem;
 }
 .side-menu span {
   background: red;
   color: var(--white-clr);
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   border-radius: 50%;
   width: 24px;
   aspect-ratio: 1/1;
@@ -189,9 +225,6 @@ section {
   position: absolute;
   top: -10px;
   right: -15px;
-}
-.hamburger {
-  display: none;
 }
 
 /*======== Banner ========*/
@@ -712,20 +745,23 @@ footer .divider {
 }
 
 @media screen and (max-width: 900px) {
-  .header .nav-links {
+  .header {
     display: none;
+  }
+  .mobile-header {
+    display: flex;
   }
   .hamburger {
     display: grid;
     place-items: center;
-    width: 2rem /* 32px */;
-    height: 1.5rem /* 24px */;
+    width: 1.4rem /* 22.4px */;
+    height: 1.2rem /* 19.2px */;
     cursor: pointer;
   }
   .hamburger .bar {
     background-color: var(--white-clr);
     width: 100%;
-    height: 4px;
+    height: 3px;
   }
   .hamburger .bar::before,
   .hamburger .bar::after {
@@ -737,10 +773,10 @@ footer .divider {
     transition: var(--transition-duration);
   }
   .hamburger .bar::before {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
   }
   .hamburger .bar::after {
-    transform: translateY(6px);
+    transform: translateY(5px);
   }
   .hamburger.active .bar::before {
     transform: translateY(-1px) rotate(45deg);
@@ -771,6 +807,9 @@ footer .divider {
 
 /*======== Mobile Phones ========*/
 @media screen and (max-width: 600px) {
+  .mobile-header .nav-links {
+    top: 57px;
+  }
   h1 {
     font-size: 1.8rem;
   }
