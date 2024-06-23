@@ -58,11 +58,6 @@ class LoginForm(AuthenticationForm):
     })
   )
 
-# Password Reset Form
-class MyPasswordResetForm(PasswordChangeForm):
-  # inheriting the PasswordChangeForm from django
-  pass
-
 # Customer's profile Form
 class CustomerProfileForm(forms.ModelForm):
   class Meta:
@@ -77,3 +72,15 @@ class CustomerProfileForm(forms.ModelForm):
       'zipcode': forms.TextInput(attrs={'class': 'form-control'}),
       'address': forms.TextInput(attrs={'class': 'form-control'}),
     }
+
+# Customer's Password Change Form - for customers to change their password if need be
+class CustomerPasswordChangeForm(PasswordChangeForm):
+  # inheriting the PasswordChangeForm from django
+  old_password = forms.CharField(label='Old Password', widget=forms.PasswordInput(attrs={'autofocus': 'True', 'placeholder': 'Enter your old password', 'class': 'form-control'}))
+  new_password1 = forms.CharField(label='New Password', widget=forms.PasswordInput(attrs={'placeholder': 'Enter new password', 'class': 'form-control'}))
+  new_password2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput(attrs={'placeholder': 'Enter new password again', 'class': 'form-control'}))
+
+# Customer's Password Reset Form - for customers to reset their password if forgotten
+class CustomerPasswordResetForm(PasswordChangeForm):
+  # inheriting the PasswordChangeForm from django
+  pass
