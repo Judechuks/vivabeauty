@@ -25,6 +25,7 @@ urlpatterns = [
   path('password_reset/', auth_view.PasswordResetView.as_view(template_name='app/reset_password.html', form_class=CustomerPasswordResetForm), name='password_reset'), 
   path('password_change/', auth_view.PasswordChangeView.as_view(template_name='app/change_password.html', form_class=CustomerPasswordChangeForm, success_url='/password_change_done'), name='password_change'), 
   path('password_change_done/', auth_view.PasswordChangeDoneView.as_view(template_name='app/password_change_done.html'), name='password_change_done'), 
+  path('logout/', auth_view.LogoutView.as_view(next_page='login'), name='logout'), 
   # profile page url
   path('profile/', views.ProfileView.as_view(), name='profile'),
   path('profile_details/', views.profile_details, name='profile_details'),
