@@ -44,10 +44,18 @@
           <li class="user-profile">User</li>
           <ul>
             <li><a href="{% url 'register' %}">Registration</a></li>
-            <li><a href="#">Profile</a></li>
+            <li><a href="{% url 'profile_details' %}">Profile</a></li>
             <li><a href="#">Orders</a></li>
-            <li><a href="#">Change Password</a></li>
-            <li><a href="#">Logout</a></li>
+            <li><a href="{% url 'password_change' %}">Change Password</a></li>
+            <li>
+              <form
+                method="post"
+                action="{% url 'logout' %}"
+                class="logout-form">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+              </form>
+            </li>
           </ul>
         </menu>
         <div class="cart">
