@@ -1,5 +1,5 @@
 from django.contrib import admin
-from . models import ProductCategory, Product, Contact, ServiceCategory, Service, Subservice, WorkSampleImage
+from . models import ProductCategory, Product, Contact, ServiceCategory, Service, Subservice, WorkSampleImage, Customer
 
 # Register your models here.
 # Category model
@@ -44,4 +44,10 @@ class SubserviceModelAdmin(admin.ModelAdmin):
 @admin.register(WorkSampleImage) # registers the sample image model
 class WorkSampleImageAdmin(admin.ModelAdmin):
 # fields to be displayed in the admin dashboard
-  list_display = ['id', 'image','service', 'caption']
+  list_display = ['id', 'image', 'service', 'caption']
+
+# Customer model
+@admin.register(Customer) # registers the customer model
+class CustomerModelAdmin(admin.ModelAdmin):
+# fields to be displayed in the admin dashboard
+  list_display = ['user', 'full_name', 'country', 'phone_number', 'address']
