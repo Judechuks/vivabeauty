@@ -1,7 +1,7 @@
 .section-top-padding {
   min-height: 72vh;
   display: grid;
-  align-content: center;
+  align-content: start;
 }
 .profile-container {
   width: 100%;
@@ -40,6 +40,13 @@ form {
   border-radius: 4px;
   margin-bottom: 30px;
   outline: 2px solid gray;
+}
+.change-password-form .form-control {
+  margin-bottom: 8px;
+}
+.change-password-form label {
+  display: block;
+  margin-top: 20px;
 }
 .form-control:focus {
   border-color: var(--purple-clr);
@@ -85,6 +92,9 @@ form {
 .btn-outline:hover {
   color: var(--purple-clr);
 }
+.passwordchange {
+  text-align: center;
+}
 /*======= ANIMATION =======*/
 @keyframes timeout {
   0%,
@@ -98,22 +108,15 @@ form {
 
 /*======= MEDIA QUERY =======*/
 @media screen and (max-width: 1020px) {
-  .col:first-chil {
-    display: none;
-  }
   .form-col {
     flex-basis: 100%;
     max-width: 600px;
     margin-inline: auto;
   }
 }
-@media screen and (max-width: 1020px) {
-  .col:first-chil {
-    display: none;
-  }
-  .form-col {
-    flex-basis: 100%;
-    max-width: 600px;
-    margin-inline: auto;
+
+@media screen and (min-width: 700px) and (min-height: 1000px) {
+  .passwordchange-container {
+    margin-top: 100px;
   }
 }
