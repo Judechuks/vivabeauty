@@ -1,7 +1,8 @@
 import { headerData } from "../constants/index.js";
 
 // DOM variables
-const navLinks = document.querySelector(".nav-links");
+const navLinks = document.querySelector(".header .nav-links");
+const mobileNavLinks = document.querySelector("nav .nav-links");
 const hamburger = document.querySelector(".hamburger");
 
 // populating the header with content
@@ -10,8 +11,12 @@ headerData?.forEach((data) => {
   output += `<li><a href=${data.link}>${data.text}</a></li>`;
 });
 navLinks.innerHTML = output;
+mobileNavLinks.innerHTML = output;
 
-hamburger.addEventListener("click", () => hamburger.classList.toggle("active"));
+hamburger.addEventListener("click", () => {
+  hamburger.classList.toggle("active");
+  mobileNavLinks.classList.toggle("active");
+});
 
 /* Review Swiper */
 let swiperReview = new Swiper(".review-container", {
