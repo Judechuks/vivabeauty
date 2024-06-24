@@ -35,8 +35,11 @@
           >+ shipping fee will be communicated to you upon checkout.</small
         >
         <div class="btn-container">
-          <button type="submit" class="btn">add to cart</button>
-          <a href="" class="btn">buy now</a>
+          <form action="/add_to_cart">
+            <input type="hidden" name="prod_id" value="{{product.id}}" />
+            <button type="submit" class="btn">add to cart</button>
+          </form>
+          <a href="{% url 'showcart' %}" class="btn">buy now</a>
         </div>
       </aside>
     </div>
