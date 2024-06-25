@@ -96,3 +96,13 @@ class Customer(models.Model):
   # how it's gonna be displayed in the django admin
   def __str__(self):
     return self.full_name
+  
+# Cart
+class Cart(models.Model):
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
+  product = models.ForeignKey(Product, on_delete=models.CASCADE)
+  quantity = models.PositiveIntegerField(default=1)
+
+  @property
+  def total_cost(self):
+    return self.product.discounted_price * self.quantity
