@@ -1,0 +1,97 @@
+<!-- inheriting the codes, links, etc from the base.html -->
+{% extends 'app/base.html' %}
+
+<!-- loading static files -->
+{% load static %}
+
+<!-- loading custom_filter for price -->
+{% load custom_filters %}
+
+<!-- head block -->
+{% block head %}
+<!-- cart.css file -->
+<link rel="stylesheet" href="{% static 'app/css/cart.css' %}" />
+{% endblock head %}
+
+<!-- document title -->
+{% block title %}Viva Beauty Home | Shopping cart{% endblock title %}
+
+<!-- Shopping cart page -->
+{% block main-content %}
+<section class="section-top-padding">
+  <h2 class="text-center">Shopping Cart</h2>
+  <article class="shopping-cart">
+    {% if cart %}
+    <div class="column-1">
+      <article class="card">
+        <div class="card-body">
+          <h3>Cart</h3>
+          {% for item in cart %}
+          <div class="cart-row">
+            <div class="col-1">
+              <img
+                src="{{item.product.product_image.url}}"
+                class="product_image"
+                alt="{{item.product.title}}" />
+            </div>
+            <div class="col-2">
+              <div>
+                <h4>{{item.product.title}}</h4>
+                <p>{{item.product.description|truncatewords:40}}</p>
+                <div class="quantity-container">
+                  <label for="quantity">Quantity:</label>
+                  <a class="minus-cart-btn" pid="{{item.product.id}}"
+                    ><i class="fa fa-minus-square"></i
+                  ></a>
+                  <span id="quantity">{{item.quantity}}</span>
+                  <a class="plus-cart-btn" pid="{{item.product.id}}"
+                    ><i class="fa fa-plus-square"></i
+                  ></a>
+                </div>
+                <nav class="remove-btn-container">
+                  <a class="remove-btn" pid="{{item.product.id}}"
+                    >Remove item</a
+                  >
+                  <p>
+                    <span
+                      ><strong
+                        >&#x20A6;{{item.product.discounted_price|format_with_commas}}</strong
+                      ></span
+                    >
+                  </p>
+                </nav>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </article>
+    </div>
+    <div class="column-2">
+      <div class="card">
+        <div class="card-body">
+          <h3>Total Amount</h3>
+          <ul class="list">
+          <li class="list-item">Amount<span id="amount">&#x20A6;{{amount}}</span></li>
+          <li class="list-item">Shipping fee <span>on delivery.</span></li>
+          <li class="list-item totalamount-container">
+          <strong>Total</strong>
+          <span id="totalamount"><strong>&#x20A6;{{amount}}</strong></span>
+          </li>
+          </ul>
+          <div class="place-order-container">
+          {% comment %} <form action="{% url 'checkout' %}"> {% endcomment %}
+          <form action="">
+          <button>Place Order</button>
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% else %}
+    <h2 class="text-center">Cart is Empty</h2>
+    <p class="text-center">Your cart is currently empty. Go shopping!</p>
+    {% endif %}
+  </article>
+</section>
+{% endblock main-content %}
