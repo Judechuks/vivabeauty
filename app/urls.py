@@ -40,5 +40,5 @@ urlpatterns = [
   path('plus_cart', views.plus_cart),
   path('minus_cart', views.minus_cart),
   path('remove_cart', views.remove_cart),
-  path('checkout', views.show_cart, name='checkout'),
+  path('checkout', views.checkout.as_view(), name='checkout'),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # to include the url to the upload images in the media folder
