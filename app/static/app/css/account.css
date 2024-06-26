@@ -7,10 +7,10 @@
   display: flex;
   gap: 40px;
 }
-.col {
+.registration-container .col {
   flex-basis: 50%;
 }
-.col:first-child img {
+.registration-container .col:first-child img {
   width: 100%;
 }
 .form-col h2 {
@@ -91,10 +91,10 @@ form {
   }
 }
 @media screen and (max-width: 1020px) {
-  .col:first-child {
+  .registration-container .col:first-child {
     display: none;
   }
-  .form-col {
+  .registration-container .form-col {
     flex-basis: 100%;
     max-width: 600px;
     margin-inline: auto;
