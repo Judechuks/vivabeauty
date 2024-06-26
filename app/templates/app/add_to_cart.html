@@ -72,11 +72,11 @@
         <div class="card-body">
           <h3>Total Amount</h3>
           <ul class="list">
-          <li class="list-item">Amount<span id="amount">&#x20A6;{{amount}}</span></li>
+          <li class="list-item">Amount<span id="amount">&#x20A6;{{amount|format_with_commas}}</span></li>
           <li class="list-item">Shipping fee <span>on delivery.</span></li>
           <li class="list-item totalamount-container">
           <strong>Total</strong>
-          <span id="totalamount"><strong>&#x20A6;{{amount}}</strong></span>
+          <span id="totalamount"><strong>&#x20A6;{{amount|format_with_commas}}</strong></span>
           </li>
           </ul>
           <div class="place-order-container">
@@ -89,8 +89,10 @@
       </div>
     </div>
     {% else %}
-    <h2 class="text-center">Cart is Empty</h2>
-    <p class="text-center">Your cart is currently empty. Go shopping!</p>
+    <div class="empty-cart">
+      <h3 class="text-center">Cart is Empty</h3>
+      <p class="text-center">Your cart is currently empty. <a href="/products">Go shopping now!</a></p>
+    </div>
     {% endif %}
   </article>
 </section>
