@@ -63,7 +63,9 @@
   font-size: 1rem;
   width: 100%;
 }
-
+.buy-now {
+  padding-block: 7px;
+}
 @media (max-width: 450px) {
   .btn-container {
     flex-direction: column;
