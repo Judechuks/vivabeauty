@@ -70,6 +70,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'app.context_processors.admin_contact_details',  # my context processor
+                'app.context_processors.cart_length',  # my context processor
             ],
         },
     },
