@@ -255,3 +255,16 @@ def remove_cart(request):
     totalamount = amount # shipping fee can be included here
     data = {'amount': amount, 'totalamount': totalamount,}
     return JsonResponse(data)
+
+# checkout
+class checkout(View):
+  def get(self, request):
+    user = request.user
+    addressInfo = Customer.objects.filter(user=user)
+    cart_items = Cart.objects.filter(user=user)
+    final_amount = 0
+    for p in cart_items:
+      value = p.quantity * p.product.discounted_price
+      final_amount = final_amount + value
+    totalamount = final_amount # shipping fee can be included here
+    return render(request, 'app/checkout.html', locals())
