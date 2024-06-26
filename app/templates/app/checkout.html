@@ -1,0 +1,109 @@
+<!-- inheriting the codes, links, etc from the base.html -->
+{% extends 'app/base.html' %}
+
+<!-- loading static files -->
+{% load static %}
+
+<!-- loading custom_filter for price -->
+{% load custom_filters %}
+
+<!-- head block -->
+{% block head %}
+<!-- cart.css file -->
+<link rel="stylesheet" href="{% static 'app/css/cart.css' %}" />
+{% endblock head %}
+
+<!-- document title -->
+{% block title %}Viva Beauty Home | Checkout {% endblock title %}
+
+<!-- Checkout page -->
+{% block main-content %}
+<section class="section-top-padding">
+  <article class="checkout">
+    {% if messages %}
+    <!-- show messages if any error -->
+    {% for msg in messages %}
+    <div class="alert alert-warning" role="alert">{{msg}}</div>
+    {% endfor %}
+    <!-- end if -->
+    {% endif %}
+    <div class="checkout-row">
+      <aside class="checkout-col-1">
+        <h3 class="col-title">Order Summary</h3>
+        {% for item in cart_items %}
+        <div class="card">
+          <div class="card-body">
+            <h4>Product: {{item.product.title}}</h4>
+            <p>Quantity: {{item.quantity}}</p>
+            <p>
+              <strong
+                >Price:
+                &#x20A6;{{item.product.discounted_price|format_with_commas}}</strong
+              >
+            </p>
+          </div>
+        </div>
+        {% endfor %}
+        <p class="totalprice">
+          <strong>Total cost: &#8358;{{totalamount|format_with_commas}}</strong>
+        </p>
+        <small
+          ><strong>Terms and Conditions:</strong> Check and inspect items on
+          delivery. Items delivered can not be returned unless item was damaged
+          before it was delivered.</small
+        >
+      </aside>
+      <aside class="checkout-col-2">
+        <h3 class="col-title">Select Shipping Address</h3>
+        <form id="myform" method="post">
+          {% csrf_token %}
+          <!-- show user's address -->
+          {% for address in addressInfo %}
+          <div class="card">
+            <div class="card-body">
+              <p><strong>{{address.full_name}}</strong></p>
+              <p>Mobile: {{address.phone_number}}</p>
+              <p>
+                {{address.zipcode}} - {{address.address}}, {{address.state}},
+                {{address.country}}
+              </p>
+            </div>
+          </div>
+          <div class="form-check">
+            <input
+              type="radio"
+              class="form-check-input"
+              name="customerid"
+              id="customerAddress{{forloop.counter}}"
+              value="{{address.id}}" />
+            <label
+              class="form-check-label"
+              for="customerAddress{{forloop.counter}}">
+              <strong>Address: {{forloop.counter}}</strong>
+            </label>
+          </div>
+          {% endfor %}
+          <div class="form-check">
+            <label for="totalamount" class="form-label"
+              ><strong>Total Amount</strong></label
+            >
+            <input
+              type="number"
+              name="totalamount"
+              id="totalamount"
+              value="{{totalamount}}"
+              readonly />
+          </div>
+          <small
+            ><strong>Note:</strong> If any of the details are incorrect,
+            navigate to your profile page and update your details.</small
+          >
+          <div class="checkout-btn-container">
+            <button type="submit" class="btn">Make Payment</button>
+          </div>
+        </form>
+      </aside>
+    </div>
+  </article>
+</section>
+{% endblock main-content %}
