@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.views import View
-from .models import ProductCategory, Product, Contact, ServiceCategory, Service, Customer
+from .models import ProductCategory, Product, Contact, ServiceCategory, Service, Customer, Cart
 from . forms import CustomerRegistrationForm, CustomerProfileForm
 from django.contrib import messages
+from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
+from django.db.models import Q # multiple filter condition
 
 # Create your views here.
 # request for the homepage
@@ -178,3 +181,77 @@ class ProfileUpdate(View):
     else:
       messages.warning(request, 'Invalid details')
     return redirect('profile_details')
+  
+# add to cart
+@login_required # for users to add to cart, they must be logged in
+def add_to_cart(request):
+  user = request.user # get the logged in user
+  product_id = request.GET.get('prod_id') # get id of the clicked product
+  product = Product.objects.get(id=product_id) # get the clicked product
+  Cart(user=user, product=product).save() # Cart model - save the user and the product to cart
+  return redirect('/cart') # redirect user to the cart url
+
+# show cart
+@login_required # for users to access the cart, they must be logged in
+def show_cart(request):
+  user = request.user
+  cart = Cart.objects.filter(user=user)
+  amount = 0
+  for p in cart:
+    value = p.quantity * p.product.discounted_price
+    amount = amount + value
+  totalamount = amount # shipping fee can be included here
+  return render(request, 'app/add_to_cart.html', locals()) # cart page
+
+# plus_cart - when the plus icon is clicked to increment item
+def plus_cart(request):
+  if request.method == 'GET':
+    prod_id = request.GET['prod_id']
+    currentItem = Cart.objects.get(Q(product=prod_id) & Q(user=request.user)) # get the product based on the product id & user
+    currentItem.quantity += 1 # increment the quantity
+    currentItem.save() # save the current cart item quantity to the database
+    # get totalAmount
+    user = request.user
+    cart = Cart.objects.filter(user=user)
+    amount = 0
+    for p in cart:
+      value = p.quantity * p.product.discounted_price
+      amount = amount + value
+    totalamount = amount # shipping fee can be included here
+    data = {'quantity': currentItem.quantity, 'amount': amount, 'totalamount': totalamount,}
+    return JsonResponse(data)
+
+# minus_cart - when the minus icon is clicked to decrement item
+def minus_cart(request):
+  if request.method == 'GET':
+    prod_id = request.GET['prod_id']
+    currentItem = Cart.objects.get(Q(product=prod_id) & Q(user=request.user)) # get the product based on the product id & user
+    currentItem.quantity -= 1 # decrement the quantity
+    currentItem.save() # save the current cart item quantity to the database
+    # get totalAmount
+    user = request.user
+    cart = Cart.objects.filter(user=user)
+    amount = 0
+    for p in cart:
+      value = p.quantity * p.product.discounted_price
+      amount = amount + value
+    totalamount = amount # shipping fee can be included here
+    data = {'quantity': currentItem.quantity, 'amount': amount, 'totalamount': totalamount,}
+    return JsonResponse(data)
+
+# remove_cart - when the remove button is clicked to remove item
+def remove_cart(request):
+  if request.method == 'GET':
+    prod_id = request.GET['prod_id']
+    currentItem = Cart.objects.get(Q(product=prod_id) & Q(user=request.user)) # get the product based on the product id & user
+    currentItem.delete() # delete the current cart item from the database
+    # get totalAmount
+    user = request.user
+    cart = Cart.objects.filter(user=user)
+    amount = 0
+    for p in cart:
+      value = p.quantity * p.product.discounted_price
+      amount = amount + value
+    totalamount = amount # shipping fee can be included here
+    data = {'amount': amount, 'totalamount': totalamount,}
+    return JsonResponse(data)
