@@ -1,4 +1,5 @@
-.shopping-cart {
+.shopping-cart,
+.checkout-row {
   min-height: 60vh;
   display: flex;
   align-items: start;
@@ -102,13 +103,78 @@
   border: none;
 }
 
+/*==== Checkout ====*/
+.checkout-row {
+  gap: 30px;
+}
+.checkout-row .col-title {
+  font-size: 1.3rem;
+  padding-bottom: 4px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid gray;
+}
+.checkout-col-1,
+.checkout-col-2 {
+  padding: 15px;
+}
+.checkout-col-1 {
+  flex-basis: 57%;
+}
+.checkout-col-2 {
+  flex-basis: 43%;
+}
+.checkout-row small {
+  font-size: 0.95rem;
+}
+.checkout-col-1 .card {
+  margin-bottom: 10px;
+  border-bottom: 1px solid gray;
+  padding-bottom: 6px;
+}
+.checkout-col-1 .totalprice {
+  margin-bottom: 15px;
+  border-bottom: 1px solid gray;
+  padding-bottom: 6px;
+}
+.checkout-row .card-body p,
+.checkout-col-2 label {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+.checkout-col-2 input#totalamount {
+  font-weight: 500;
+  font-size: 1.1rem;
+  padding-inline: 4px;
+}
+.checkout-col-2 label {
+  cursor: pointer;
+}
+.checkout-col-2 input[type="radio"] {
+  accent-color: var(--purple-clr);
+}
+.checkout-col-2 .form-check {
+  border-bottom: 1px solid gray;
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+}
+.checkout-row .btn {
+  padding-block: 6px;
+  font-size: 1rem;
+}
+strong {
+  font-weight: 500;
+}
 /*===== Responsiveness =====*/
 @media screen and (max-width: 830px) {
-  .shopping-cart {
+  .shopping-cart,
+  .checkout-row {
     flex-wrap: wrap;
+    gap: 20px;
   }
   .shopping-cart .column-1,
-  .shopping-cart .column-2 {
+  .shopping-cart .column-2,
+  .checkout-col-1,
+  .checkout-col-2 {
     flex-basis: 100%;
   }
 }
@@ -116,5 +182,12 @@
 @media screen and (max-width: 500px) {
   .shopping-cart .cart-row {
     flex-direction: column;
+  }
+  .checkout-row .col-title {
+    font-size: 1.1rem;
+  }
+  .checkout-col-1,
+  .checkout-col-2 {
+    padding: 0px;
   }
 }
