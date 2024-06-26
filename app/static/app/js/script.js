@@ -61,3 +61,55 @@ let swiperWorkSample = new Swiper(".sample-container", {
 
 // footer get full year
 document.querySelector("span.year").innerHTML = new Date().getFullYear();
+
+// Cart
+// plus-cart - when quantity is to be incremented by 1
+$(".plus-cart-btn").click(function () {
+  let id = $(this).attr("pid").toString();
+  let selectedElement = this.parentNode.children[2];
+  $.ajax({
+    type: "GET",
+    url: "/plus_cart",
+    data: { prod_id: id },
+    success: function (data) {
+      // console.log("data =", data);
+      selectedElement.innerText = data.quantity;
+      document.getElementById("amount").innerText = data.amount;
+      document.getElementById("totalamount").innerText = data.totalamount;
+    },
+  });
+});
+
+// minus-cart - when quantity is to be decremented by 1
+$(".minus-cart-btn").click(function () {
+  let id = $(this).attr("pid").toString();
+  let selectedElement = this.parentNode.children[2];
+  $.ajax({
+    type: "GET",
+    url: "/minus_cart",
+    data: { prod_id: id },
+    success: function (data) {
+      // console.log("data =", data);
+      selectedElement.innerText = data.quantity;
+      document.getElementById("amount").innerText = data.amount;
+      document.getElementById("totalamount").innerText = data.totalamount;
+    },
+  });
+});
+
+// remove-cart - when quantity is to be decremented by 1
+$(".remove-btn").click(function () {
+  let id = $(this).attr("pid").toString();
+  let selectedElement = this;
+  // console.log(selectedElement.parentNode.parentNode.parentNode.parentNode);
+  $.ajax({
+    type: "GET",
+    url: "/remove_cart",
+    data: { prod_id: id },
+    success: function (data) {
+      document.getElementById("amount").innerText = data.amount;
+      document.getElementById("totalamount").innerText = data.totalamount;
+      selectedElement.parentNode.parentNode.parentNode.parentNode.remove(); // remove the 4th parent that nests the clicked item
+    },
+  });
+});
