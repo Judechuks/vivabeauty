@@ -34,5 +34,11 @@ urlpatterns = [
   path('password_reset/done/', auth_view.PasswordResetDoneView.as_view(template_name='app/password_reset_done.html'), name='password_reset_done'), 
   path('password_reset_confirm/<uidb64>/<token>/', auth_view.PasswordResetConfirmView.as_view(template_name='app/password_reset_confirm.html', form_class=CustomerSetPasswordForm), name='password_reset_confirm'), 
   path('password_reset_complete/', auth_view.PasswordResetCompleteView.as_view(template_name='app/password_reset_complete.html'), name='password_reset_complete'), 
-
+  # cart
+  path('add_to_cart', views.add_to_cart, name='add_to_cart'),
+  path('cart', views.show_cart, name='showcart'),
+  path('plus_cart', views.plus_cart),
+  path('minus_cart', views.minus_cart),
+  path('remove_cart', views.remove_cart),
+  path('checkout', views.show_cart, name='checkout'),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # to include the url to the upload images in the media folder
