@@ -26,6 +26,10 @@
     <link rel="stylesheet" href="{% static 'app/css/style.css' %}" />
     <!-- swiper script file -->
     <script defer src="{% static 'app/swiper/swiper-bundle.min.js' %}"></script>
+    <!-- jquery script -->
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!-- static script file -->
     <script defer type="module" src="{% static 'app/js/script.js' %}"></script>
     {% block head %}{% endblock head %}
@@ -69,9 +73,9 @@
           {% endif %}
         </menu>
 
-        <div class="cart">
-          <i class="fa fa-shopping-cart"></i> <span>0</span>
-        </div>
+        <a class="cart" href="/cart">
+          <i class="fa fa-shopping-cart"></i> <span>{{totalCartItem}}</span>
+        </a>
         <div class="favorite"><i class="fa fa-heart"></i><span>0</span></div>
       </div>
     </header>
@@ -116,7 +120,9 @@
           </menu>
 
           <div class="cart">
-            <i class="fa fa-shopping-cart"></i> <span>0</span>
+            <a class="cart" href="/cart">
+              <i class="fa fa-shopping-cart"></i> <span>{{totalCartItem}}</span>
+            </a>
           </div>
           <div class="favorite"><i class="fa fa-heart"></i><span>0</span></div>
         </div>
