@@ -174,23 +174,27 @@ section {
   cursor: pointer;
   color: var(--pink-clr);
 }
-.dropdown-sidemenu:hover ul {
-  display: block;
-}
 .dropdown-sidemenu .user-profile::after {
   content: "\25BE";
 }
 .dropdown-sidemenu ul {
   position: absolute;
   width: 180px;
+  top: 30px;
   left: 50%;
   transform: translateX(-50%);
   background: var(--purple-clr);
-  padding: 10px;
-  display: none;
+  padding: 4px 10px;
+  height: 0;
+  overflow: hidden;
   z-index: 5;
+  transition: var(--transition-duration);
+}
+.dropdown-sidemenu:hover ul {
+  height: 130px;
 }
 .dropdown-sidemenu li a {
+  padding-top: 6px;
   font-size: 1rem;
   display: block;
 }
