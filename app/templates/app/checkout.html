@@ -55,13 +55,14 @@
       </aside>
       <aside class="checkout-col-2">
         <h3 class="col-title">Select Shipping Address</h3>
-        <form id="myform" method="post">
+        <form id="myform" method="post" action="{% url 'make_payment' %}">
           {% csrf_token %}
           <!-- show user's address -->
           {% for address in addressInfo %}
           <div class="card">
             <div class="card-body">
-              <p><strong>{{address.full_name}}</strong></p>
+              <p><strong>Name: {{address.full_name}}</strong></p>
+              <p><strong>Email: {{email}}</strong></p>
               <p>Mobile: {{address.phone_number}}</p>
               <p>
                 {{address.zipcode}} - {{address.address}}, {{address.state}},
@@ -96,10 +97,13 @@
           </div>
           <small
             ><strong>Note:</strong> If any of the details are incorrect,
-            navigate to your profile page and update your details.</small
+            navigate to your profile page and update your details before making
+            payments.</small
           >
           <div class="checkout-btn-container">
-            <button type="submit" class="btn">Make Payment</button>
+            <button onclick="payWithPaystack()" type="submit" class="btn">
+              Proceed
+            </button>
           </div>
         </form>
       </aside>
