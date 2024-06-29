@@ -1,0 +1,30 @@
+<!-- inheriting the codes, links, etc from the base.html -->
+{% extends 'app/base.html' %}
+
+<!-- loading static files -->
+{% load static %}
+
+<!-- loading custom_filter for price -->
+{% load custom_filters %}
+
+<!-- head block -->
+{% block head %}
+<!-- cart.css file -->
+<link rel="stylesheet" href="{% static 'app/css/cart.css' %}" />
+{% endblock head %}
+
+<!-- document title -->
+{% block title %}Viva Beauty Home | Payment Successful {% endblock title %}
+
+<!-- Payment page -->
+{% block main-content %}
+<section class="contact section-top-padding">
+  <section class="message-container">
+    <h2>Payment was Successful!</h2>
+    <p>Your order was successfully received, we'll begin processing immediately. Thank you for patronizing us, we hope to serve you better. Payment details will be sent to your email. Here's your <strong>Ref. No: <br>{{payment.ref}}</strong></p>
+    <a href="{% url 'orders' %}" class="btn">My Orders</a>
+  </section>
+</section>
+{% endblock main-content %}
+  </body>
+</html>
