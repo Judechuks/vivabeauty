@@ -33,6 +33,10 @@ DEBUG = os.environ.get('DEBUG') == 'True'
 
 ALLOWED_HOSTS = []
 
+# Paystack secret key
+PAYSTACK_SECRET_KEY = os.environ.get('PAYSTACK_API_SECRET_KEY')
+PAYSTACK_PUBLIC_KEY = os.environ.get('PAYSTACK_PUBLIC_KEY')
+PAYSTACK_PUBLISHABLE = os.environ.get('PUBLISHABLE')
 
 # Application definition
 
