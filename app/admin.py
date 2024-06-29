@@ -1,5 +1,5 @@
 from django.contrib import admin
-from . models import ProductCategory, Product, Contact, ServiceCategory, Service, Subservice, WorkSampleImage, Customer, Cart
+from . models import ProductCategory, Product, Contact, ServiceCategory, Service, Subservice, WorkSampleImage, Customer, Cart, Payment, Order
 
 # Register your models here.
 # Category model
@@ -57,3 +57,15 @@ class CustomerModelAdmin(admin.ModelAdmin):
 class CartModelAdmin(admin.ModelAdmin):
 # fields to be displayed in the admin dashboard
   list_display = ['id', 'user', 'product', 'quantity']
+
+# Payment model
+@admin.register(Payment) # registers the Payment model
+class PaymentModelAdmin(admin.ModelAdmin):
+# fields to be displayed in the admin dashboard
+  list_display = ['user', 'amount', 'ref', 'verified', 'created_at']
+
+# Order model
+@admin.register(Order) # registers the Order model
+class OrderModelAdmin(admin.ModelAdmin):
+# fields to be displayed in the admin dashboard
+  list_display = ['customer', 'ordered_date', 'total_cost', 'status', 'payment']
