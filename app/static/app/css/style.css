@@ -355,6 +355,7 @@ section {
 /*====== Products =======*/
 .section-top-padding {
   padding-top: 100px;
+  min-height: 75vh;
 }
 .section-top-padding .section-title {
   line-height: 1;
@@ -612,6 +613,12 @@ form .btn:hover {
 }
 .message-container .btn {
   margin-top: 50px;
+  width: fit-content;
+  border-radius: 4px;
+  margin-inline: auto;
+}
+.message-container .btn:hover {
+  background-color: var(--dark-purple-clr);
 }
 
 /*====== Footer =======*/
