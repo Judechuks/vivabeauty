@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from .api_utils import get_countries
+import secrets # to generate random reference numbers
+from .paystack import Paystack # payment processor
 
 # Create your models here.
 # Product's Category Model
@@ -106,3 +108,61 @@ class Cart(models.Model):
   @property
   def total_cost(self):
     return self.product.discounted_price * self.quantity
+
+# order status
+STATUS_CHOICES = (
+  ('Pending', 'Pending'),  
+  ('Accepted', 'Accepted'),  
+  ('Packed', 'Packed'),  
+  ('On The Way', 'On The Way'),  
+  ('Delivered', 'Delivered'),  
+  ('Cancel', 'Cancel'),  
+)
+
+# payment model
+class Payment(models.Model):
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
+  amount = models.FloatField()
+  ref = models.CharField(max_length=250)
+  email = models.EmailField(max_length=250)
+  verified = models.BooleanField(default=False)
+  created_at = models.DateTimeField(auto_now_add=True)
+
+  def __str__(self):
+    return f'{self.user} - {self.amount}'
+  
+  def save(self, *args, **kwargs):
+    while not self.ref:
+      ref = secrets.token_urlsafe(50)
+      object_with_similar_ref = Payment.objects.filter(ref=ref)
+      if not object_with_similar_ref:
+        self.ref = ref
+    super().save(*args, **kwargs)
+
+  def amount_value(self):
+    return float(self.amount) * 100 # paystack system requires you multiply amount by 100
+
+  def verify_payment(self):
+    paystack = Paystack()
+    status, result = paystack.verify_payment(self.ref, self.amount) # verify_payment from paystack.py
+    if status:
+      if result['amount'] / 100 == self.amount:
+        self.verified = True
+        self.save()
+    if self.verified:
+      return True
+    else:
+      return False
+  
+# order placed model
+class Order(models.Model):
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
+  customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+  product = models.ForeignKey(Product, on_delete=models.CASCADE)
+  quantity = models.PositiveIntegerField(default=1)
+  ordered_date = models.DateTimeField(auto_now_add=True)
+  status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='Pending')
+  payment = models.ForeignKey(Payment, on_delete=models.CASCADE, default='')
+  @property
+  def total_cost(self):
+    return self.quantity * self.product.discounted_price
