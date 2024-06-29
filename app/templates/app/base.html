@@ -51,7 +51,7 @@
           <li class="user-profile">{{request.user|capfirst}}</li>
           <ul>
             <li><a href="{% url 'profile_details' %}">Profile</a></li>
-            <li><a href="#">Orders</a></li>
+            <li><a href="{% url 'orders' %}">Orders</a></li>
             <li><a href="{% url 'password_change' %}">Change Password</a></li>
             <li>
               <form
@@ -97,7 +97,7 @@
             <li class="user-profile">{{request.user|capfirst}}</li>
             <ul>
               <li><a href="{% url 'profile_details' %}">Profile</a></li>
-              <li><a href="#">Orders</a></li>
+              <li><a href="{% url 'orders' %}">Orders</a></li>
               <li><a href="{% url 'password_change' %}">Change Password</a></li>
               <li>
                 <form
@@ -174,13 +174,13 @@
           <h2>Resources</h2>
           <ul>
             <li>
-              <a href="/booking">Book Service</a>
+              <a href="/cart">Cart</a>
             </li>
             <li>
-              <a href="/">Checkout</a>
+              <a href="{% url 'checkout' %}">Checkout</a>
             </li>
             <li>
-              <a href="/">Wishlist</a>
+              <a href="#">Wishlist</a>
             </li>
             <li>
               <a href="/">Privacy policies</a>
@@ -254,5 +254,6 @@
         </div>
       </div>
     </footer>
+    {% block paystack-script %}{% endblock paystack-script %}
   </body>
 </html>
