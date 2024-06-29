@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.views import View
-from .models import ProductCategory, Product, Contact, ServiceCategory, Service, Customer, Cart
+from .models import ProductCategory, Product, Contact, ServiceCategory, Service, Customer, Cart, Payment, Order
 from . forms import CustomerRegistrationForm, CustomerProfileForm
 from django.contrib import messages
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q # multiple filter condition
+from django.conf import settings
 
 # Create your views here.
 # request for the homepage
@@ -260,6 +261,7 @@ def remove_cart(request):
 class checkout(View):
   def get(self, request):
     user = request.user
+    email = request.user.email
     addressInfo = Customer.objects.filter(user=user)
     cart_items = Cart.objects.filter(user=user)
     final_amount = 0
@@ -268,3 +270,43 @@ class checkout(View):
       final_amount = final_amount + value
     totalamount = final_amount # shipping fee can be included here
     return render(request, 'app/checkout.html', locals())
+  
+# make payment
+def make_payment(request):
+    user = request.user
+    email = request.user.email
+    addressInfo = Customer.objects.filter(user=user)
+    cart_items = Cart.objects.filter(user=user)
+    final_amount = 0
+    for p in cart_items:
+      value = p.quantity * p.product.discounted_price
+      final_amount = final_amount + value
+    totalamount = final_amount # shipping fee can be included here
+    # make payment
+    if request.method == 'POST':
+      payment = Payment.objects.create(user=user, amount=totalamount, email=user.email)
+      payment.save()
+      paystack_pub_key = settings.PAYSTACK_PUBLIC_KEY
+      pstk_amount = payment.amount_value() # amount for paystack
+    return render(request, 'app/make_payment.html', locals())
+
+# verify payment
+def verify_payment(request, ref):
+  try:
+    user = request.user
+    cart = Cart.objects.filter(user=user)
+    customer = Customer.objects.get(user=user)
+    payment = Payment.objects.get(ref=ref)
+    verified = payment.verify_payment() # verify_payment from Payment model
+    if verified:
+      # orders
+      for item in cart:
+        Order(user=user, customer=customer, product=item.product, quantity=item.quantity, payment=payment).save()
+        cart.delete()
+      return render(request, 'app/payment_success.html', locals())
+    else:
+      messages.warning(request, 'Oops, your order was not processed please contact support.')
+      return redirect('/')
+  except Payment.DoesNotExist:
+    messages.warning(request, 'Payment not found for this reference.')
+    return JsonResponse({'error_message': 'Payment not found.'})
