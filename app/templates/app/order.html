@@ -1,0 +1,129 @@
+<!-- inheriting the codes, links, etc from the base.html -->
+{% extends 'app/base.html' %}
+
+<!-- loading static files -->
+{% load static %}
+
+<!-- loading custom_filter for price -->
+{% load custom_filters %}
+
+<!-- head block -->
+{% block head %}
+<!-- profile.css file -->
+<link rel="stylesheet" href="{% static 'app/css/order.css' %}" />
+{% endblock head %}
+
+<!-- document title -->
+{% block title %}Viva Beauty Home | Orders{% endblock title %}
+
+<!-- Shopping cart page -->
+{% block main-content %}
+<section class="section-top-padding">
+  <div class="welcome-user"><h3>Welcome {{request.user|capfirst}}!</h3></div>
+  <article class="orders-container">
+    {% if orders %}
+    <!-- show all orders -->
+    {% for order in orders %}
+    <div class="orders-row">
+      <div class="col-1">
+        <img
+          src="{{order.product.product_image.url}}"
+          alt="{{order.product.title}}"
+          height="60"
+          width="60" />
+        <p>Order ID: {{order.id}}</p>
+      </div>
+      <div class="col-2">
+        <p>Product: {{order.product.title}}</p>
+        <p>Quantity: {{order.quantity}} &mdash; Price: &#x20A6;{{order.total_cost|format_with_commas}}</p>
+        <p>Ordered on: {{order.ordered_date}}</p>
+        <p></p>
+      </div>
+      <div class="col-3">
+        <p>Order Status: {{order.status}}</p>
+        {% if order.status == 'Pending' %}
+        <div class="progress">
+        <i class="fa fa-hourglass-half"></i>
+        </div>
+        {% endif %}
+        {% if order.status == 'Accepted' %}
+        <div class="progress">
+          <progress
+            class="progressbar progress-accepted"
+            role="progressbar"
+            aria-valuenow="25"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            min="0"
+            max="100"
+            value="25"></progress>
+        </div>
+        {% endif %}
+        {% if order.status == 'Packed' %}
+        <div class="progress">
+          <progress
+            class="progressbar progress-packed"
+            role="progressbar"
+            aria-valuenow="50"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            min="0"
+            max="100"
+            value="50"></progress>
+        </div>
+        {% endif %}
+        {% if order.status == 'On The Way' %}
+        <div class="progress">
+          <progress
+            class="progressbar progress-on-the-way"
+            role="progressbar"
+            aria-valuenow="75"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            min="0"
+            max="100"
+            value="75"></progress>
+        </div>
+        {% endif %}
+        {% if order.status == 'Delivered' %}
+        <div class="progress">
+          <progress
+            class="progressbar progress-delivered"
+            role="progressbar"
+            aria-valuenow="100"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            min="0"
+            max="100"
+            value="100"></progress>
+        </div>
+        {% endif %}
+        {% if order.status == 'Canceled' %}
+        <div class="progress">
+          <progress
+            class="progressbar progress-canceled"
+            role="progressbar"
+            aria-valuenow="100"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            min="0"
+            max="100"
+            value="100"></progress>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </article>
+    <!-- if no orders -->
+    {% else %}
+    <h2 class="text-center">No orders</h2>
+    <p class="text-center">
+      You haven't placed any orders yet. Go shopping and place orders now.
+      <div class="go-shopping">
+        <a href="/products" class="btn">Go Shopping!</a>
+      </div>
+    </p>
+    {% endif %}
+</section>
+{% endblock main-content %}
