@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
-from app.models import Contact, Cart
+from app.models import Contact, Cart, Wishlist, Product
+from django.db.models import Q # multiple filter condition
 
 # To avoid passing the contact details as context to every template, you can use Django’s context processors. Context processors allow you to add data to the context of every template without explicitly passing it in each view function.
 def admin_contact_details(request):
@@ -37,3 +38,18 @@ def cart_length(request):
     except Cart.DoesNotExist:
       return {'totalCartItem': 0}  # Return 0 total cart item if no cart record found
   # In your project’s settings.py, add your context processor to the context_processors list. register the cart_length
+
+# to get the total item a user have in a wishlist, to avaoid passing it in all the views, I'm using the context_processor
+def wishlist_length(request):
+  user = request.user
+  if user.is_anonymous:
+    return {'totalWishlist': 0} # Return 0 if user is not logged in
+  else:
+    try:
+      wishlist = Wishlist.objects.filter(user=user) # check if wishlist exists
+      return {
+        'totalWishlist': len(wishlist)
+      }
+    except Cart.DoesNotExist:
+      return {'totalWishlist': 0}  # Return 0 if no wishlist record found
+  # In your project’s settings.py, add your context processor to the context_processors list. register the wishlist_length
