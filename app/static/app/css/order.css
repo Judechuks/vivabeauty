@@ -1,0 +1,53 @@
+.go-shopping {
+  margin-top: 20px;
+  text-align: center;
+}
+.go-shopping .btn {
+  border-radius: var(--radius);
+}
+.go-shopping .btn:hover {
+  background-color: var(--dark-purple-clr);
+}
+.progress-accepted {
+  accent-color: rgb(255, 13, 255);
+}
+.progress-packed {
+  accent-color: rgb(255, 155, 13);
+}
+.progress-on-the-way {
+  accent-color: rgb(13, 13, 255);
+}
+.progress-delivered {
+  accent-color: rgb(13, 255, 13);
+}
+.progress-canceled {
+  accent-color: rgb(255, 13, 13);
+}
+.orders-container {
+  max-width: 850px;
+  margin-inline: auto;
+  display: grid;
+  gap: 20px;
+}
+.orders-row {
+  display: grid;
+}
+
+/*==== Responsiveness ====*/
+@media screen and (min-width: 460px) {
+  .orders-row {
+    grid-template-columns: auto 1fr;
+    column-gap: 20px;
+  }
+  .col-3 {
+    grid-column: span 2;
+  }
+}
+@media screen and (min-width: 760px) {
+  .col-3 {
+    grid-column: span 1;
+  }
+  .orders-row {
+    grid-template-columns: auto 1fr 220px;
+  }
+}
