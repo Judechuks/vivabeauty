@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.views import View
-from .models import ProductCategory, Product, Contact, ServiceCategory, Service, Customer, Cart, Payment, Order
+from .models import ProductCategory, Product, Contact, ServiceCategory, Service, Customer, Cart, Payment, Order, Wishlist
 from . forms import CustomerRegistrationForm, CustomerProfileForm
 from django.contrib import messages
 from django.http import JsonResponse
@@ -50,14 +50,14 @@ def product_list(request, category_id):
 # product detail view
 def product_detail(request, product_id):
   product = Product.objects.get(pk=product_id)
+  wishlist = Wishlist.objects.filter(Q(product=product) & Q(user=request.user)) # check if wishlist exists
   # context to pass down the contact and categories information
-  context = {'product': product}
+  context = {'product': product, 'wishlist': wishlist}
   return render(request, 'app/product_detail.html', context)
 
 # contact us view
 def contact(request):
   contact_info = Contact.objects.first()
-
   # contact us form submission
   if request.method == 'POST':
     # processing form data
@@ -74,7 +74,6 @@ def contact(request):
     )
     # Redirect to a thank-you page after form submission
     return render(request, 'app/success.html', {'contact_info': contact_info})
-    
   # context to pass down the contact information
   context = {'contact_info': contact_info}
   return render(request, 'app/contact.html', context) 
@@ -310,3 +309,33 @@ def verify_payment(request, ref):
   except Payment.DoesNotExist:
     messages.warning(request, 'Payment not found for this reference.')
     return JsonResponse({'error_message': 'Payment not found.'})
+  
+# orders
+def orders(request):
+  user=request.user
+  orders = Order.objects.filter(user=user)
+  return render(request, 'app/order.html', locals())
+
+# add_wishlist
+@login_required # for users to add products to wishlist, they must be logged in
+def add_wishlist(request):
+  if request.method == 'GET':
+    prod_id = request.GET['prod_id']
+    product = Product.objects.get(id=prod_id)
+    Wishlist(user=request.user, product=product).save()
+    data={
+      'message': 'Product added to wishlist.',
+    }
+    return JsonResponse(data)
+
+# remove_wishlist
+@login_required # for users to remove products from wishlist, they must be logged in
+def remove_wishlist(request):
+  if request.method == 'GET':
+    prod_id = request.GET['prod_id']
+    product = Product.objects.get(id=prod_id)
+    Wishlist.objects.filter(user=request.user, product=product).delete()
+    data={
+      'message': 'Product removed from wishlist.',
+    }
+    return JsonResponse(data)
