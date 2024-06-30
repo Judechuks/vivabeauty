@@ -24,6 +24,15 @@
     <div class="product-detail">
       <div class="img-container">
         <img src="{{ product.product_image.url }}" alt="{{ product.title }}" />
+        {% if wishlist %}
+        <a pid="{{product.id}}" class="remove-wishlist-btn">
+          <i class="fa fa-heart"></i>
+        </a>
+        {% else %}
+        <a pid="{{product.id}}" class="add-wishlist-btn">
+          <i class="fa fa-heart"></i>
+        </a>
+        {% endif %}
       </div>
       <aside>
         <h3 class="title">{{ product.title }}</h3>
