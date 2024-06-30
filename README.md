@@ -92,3 +92,11 @@ This API is used to get the list of countries, states and cities
 This API was used in the CustomerProfileForm to provide list of countries that customer's can select from.
 
 ---
+
+### PayStack Payment Gateway
+
+#### [Paystack]('https://paystack.com/')
+
+Using Paystack service for my online payment system via Requests
+
+---
