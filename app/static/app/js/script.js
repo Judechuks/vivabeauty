@@ -1,4 +1,5 @@
 import { headerData } from "../constants/index.js";
+const domain = "http://127.0.0.1:8000";
 
 // DOM variables
 const navLinks = document.querySelector(".header .nav-links");
@@ -110,6 +111,33 @@ $(".remove-btn").click(function () {
       document.getElementById("amount").innerText = data.amount;
       document.getElementById("totalamount").innerText = data.totalamount;
       selectedElement.parentNode.parentNode.parentNode.parentNode.remove(); // remove the 4th parent that nests the clicked item
+      window.location.href = `${domain}/cart`; // reload so the context_processor can update
+    },
+  });
+});
+
+// add wishlist
+$(".add-wishlist-btn").click(function () {
+  let id = $(this).attr("pid").toString();
+  $.ajax({
+    type: "GET",
+    url: "/add_wishlist",
+    data: { prod_id: id },
+    success: function (data) {
+      window.location.href = `${domain}/products/${id}`;
+    },
+  });
+});
+
+// remove wishlist
+$(".remove-wishlist-btn").click(function () {
+  let id = $(this).attr("pid").toString();
+  $.ajax({
+    type: "GET",
+    url: "/remove_wishlist",
+    data: { prod_id: id },
+    success: function (data) {
+      window.location.href = `${domain}/products/${id}`;
     },
   });
 });
