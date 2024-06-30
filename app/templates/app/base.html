@@ -46,7 +46,7 @@
       </ul>
       <div class="side-menu">
         <menu class="dropdown-sidemenu">
-          <!-- if user is is_authenticated then display this menu -->
+          <!-- if user is_authenticated then display this menu -->
           {% if request.user.is_authenticated %}
           <li class="user-profile">{{request.user|capfirst}}</li>
           <ul>
@@ -63,20 +63,23 @@
               </form>
             </li>
           </ul>
-          {% else %}
-          <!-- otherwise display this menu -->
-          <li class="user-profile">Account</li>
-          <ul>
-            <li><a href="{% url 'register' %}">Register</a></li>
-            <li><a href="{% url 'login' %}">Login</a></li>
-          </ul>
-          {% endif %}
         </menu>
-
         <a class="cart" href="/cart">
           <i class="fa fa-shopping-cart"></i> <span>{{totalCartItem}}</span>
         </a>
-        <div class="favorite"><i class="fa fa-heart"></i><span>0</span></div>
+        <div class="favorite">
+          <a class="cart" href="/wishlist"
+            ><i class="fa fa-heart"></i><span>{{totalWishlist}}</span></a
+          >
+        </div>
+        {% else %}
+        <!-- otherwise display this menu -->
+        <li class="user-profile"><i class="fa fa-user"></i></li>
+        <ul>
+          <li><a href="{% url 'register' %}">Register</a></li>
+          <li><a href="{% url 'login' %}">Login</a></li>
+        </ul>
+        {% endif %}
       </div>
     </header>
 
@@ -92,7 +95,7 @@
         </ul>
         <div class="side-menu">
           <menu class="dropdown-sidemenu">
-            <!-- if user is is_authenticated then display this menu -->
+            <!-- if user is_authenticated then display this menu -->
             {% if request.user.is_authenticated %}
             <li class="user-profile">{{request.user|capfirst}}</li>
             <ul>
@@ -109,23 +112,24 @@
                 </form>
               </li>
             </ul>
+            </menu>
+            <a class="cart" href="/cart">
+              <i class="fa fa-shopping-cart"></i><span>{{totalCartItem}}</span>
+            </a>
+            <div class="favorite">
+              <a class="cart" href="/wishlist"
+                ><i class="fa fa-heart"></i><span>{{wishlist|length}}</span></a
+              >
+            </div>
             {% else %}
             <!-- otherwise display this menu -->
-            <li class="user-profile">Account</li>
+            <li class="user-profile"><i class="fa fa-user"></i></li>
             <ul>
               <li><a href="{% url 'register' %}">Register</a></li>
               <li><a href="{% url 'login' %}">Login</a></li>
             </ul>
+            </menu>
             {% endif %}
-          </menu>
-
-          <div class="cart">
-            <a class="cart" href="/cart">
-              <i class="fa fa-shopping-cart"></i> <span>{{totalCartItem}}</span>
-            </a>
-          </div>
-          <div class="favorite"><i class="fa fa-heart"></i><span>0</span></div>
-        </div>
         <!--========= HAMBURGER =========-->
         <div class="hamburger">
           <div class="bar"></div>
@@ -180,10 +184,10 @@
               <a href="{% url 'checkout' %}">Checkout</a>
             </li>
             <li>
-              <a href="#">Wishlist</a>
+              <a href="/wishlist">Wishlist</a>
             </li>
             <li>
-              <a href="/">Privacy policies</a>
+              <a href="/orders">Orders</a>
             </li>
           </ul>
         </div>
