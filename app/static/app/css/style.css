@@ -161,7 +161,11 @@ section {
 .side-menu {
   display: flex;
   gap: 15px;
-  align-items: baseline;
+  align-items: center;
+}
+.header .side-menu {
+  min-width: 80px;
+  justify-content: end;
 }
 /*---- dropdown menu----*/
 .dropdown-sidemenu {
