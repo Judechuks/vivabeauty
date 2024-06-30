@@ -116,7 +116,7 @@ STATUS_CHOICES = (
   ('Packed', 'Packed'),  
   ('On The Way', 'On The Way'),  
   ('Delivered', 'Delivered'),  
-  ('Cancel', 'Cancel'),  
+  ('Cancel', 'Canceled'),  
 )
 
 # payment model
@@ -166,3 +166,8 @@ class Order(models.Model):
   @property
   def total_cost(self):
     return self.quantity * self.product.discounted_price
+  
+# wishlist model
+class Wishlist(models.Model):
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
+  product = models.ForeignKey(Product, on_delete=models.CASCADE)
