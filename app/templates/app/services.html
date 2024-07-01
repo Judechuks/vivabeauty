@@ -45,12 +45,15 @@
             <a href="{% url 'service_detail' service.id %}">
               <h3 class="title">{{ service.name }}</h3>
             </a>
-            <p class="overview">{{service.description}}</p>
+            <p class="overview">{{service.description|truncatewords:16}}</p>
           </div>
-          <nav class="btn-group">
+          <!-- <nav class="btn-group">
             <a href="{% url 'service_detail' service.id %}">learn more</a>
             <span class="separator"> | </span>
             <a href="booking">book now</a>
+          </nav> -->
+          <nav class="btn-group">
+            <a href="{% url 'service_detail' service.id %}">learn more</a>
           </nav>
         </div>
         <aside>
