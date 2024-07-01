@@ -182,6 +182,10 @@ strong {
 .payment-container .text {
   margin-block: 15px;
 }
+.wrap-text {
+  word-break: break-all;
+}
+
 /*===== Responsiveness =====*/
 @media screen and (max-width: 830px) {
   .shopping-cart,
