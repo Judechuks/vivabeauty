@@ -263,6 +263,49 @@ section {
 #banner .content p {
   margin-block: 20px;
 }
+.searchForm {
+  max-width: 300px;
+  border-radius: 12px;
+  padding: 5px 5px 5px 12px;
+  background: var(--white-clr);
+  border: 2px solid var(--purple-clr);
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.searchForm input,
+.searchForm button {
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  background-color: var(--white-clr);
+}
+.searchForm input {
+  flex-basis: 100%;
+}
+.searchForm:focus-within {
+  border-color: rgb(110, 4, 110);
+}
+.searchForm button {
+  flex-basis: fit-content;
+  padding: 5px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--white-clr);
+  background: var(--purple-clr);
+  transition: var(--transition-duration);
+}
+.searchForm button:hover {
+  background: var(--dark-purple-clr);
+}
+@media screen and (max-width: 280px) {
+  .searchForm {
+    max-width: 270px;
+  }
+  .searchForm input {
+    width: 100%;
+  }
+}
 
 /*======== About Us ========*/
 #about-us {
@@ -623,6 +666,59 @@ form .btn:hover {
 }
 .message-container .btn:hover {
   background-color: var(--dark-purple-clr);
+}
+
+/*====== Search Page =======*/
+.search-container {
+  display: grid;
+  gap: 30px;
+}
+.header_count {
+  padding-bottom: 4px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid gray;
+}
+.grid-item {
+  display: grid;
+  gap: 10px;
+}
+.grid-item .item .item-title,
+.grid-item .item .price {
+  font-size: 0.85rem;
+}
+.grid-item .item .font-xsm {
+  font-size: 0.85rem;
+}
+@media (min-width: 280px) {
+  .grid-item {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 380px) {
+  .grid-item {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (min-width: 560px) {
+  .grid-item .item .item-title,
+  .grid-item .item .price {
+    font-size: 1rem;
+  }
+}
+@media (min-width: 800px) {
+  .grid-item {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (min-width: 900px) {
+  .grid-item {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+@media (min-width: 1010px) {
+  .grid-item {
+    grid-template-columns: repeat(6, 1fr);
+  }
 }
 
 /*====== Footer =======*/
