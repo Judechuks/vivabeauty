@@ -1,0 +1,86 @@
+<!-- inheriting the codes, links, etc from the base.html -->
+{% extends 'app/base.html' %}
+
+<!-- loading static files -->
+{% load static %}
+
+<!-- loading custom_filter for price -->
+{% load custom_filters %}
+
+<!-- document title -->
+{% block title %}Viva Beauty Home | Search Result{% endblock title %}
+
+<!-- Payment page -->
+{% block main-content %}
+<section class="section-top-padding">
+  <section class="search-container">
+    <!-- for products -->
+    {% if products %}
+    <div>
+      <h3 class="header_count">{{products|length}} {% if products|length == 1 %}product{% else %}products{% endif %} found</h3>
+      <article class="grid-item">
+        {% for product in products %}
+        <div class="item">
+          <a href="{% url 'product_detail' product.id %}">
+            <img src="{{product.product_image.url}}" alt="{{product.title}}" height="80" width="80">
+          </a>
+          <h4 class="item-title">
+            <a href="{% url 'product_detail' product.id %}">{{product.title}}</a>
+          </h4>
+          <p class="price">&#x20A6;{{product.discounted_price|format_with_commas}}</p>
+        </div>
+        {% endfor %}
+      </article>
+    </div>
+    {% endif %}
+    <!-- for services -->
+    {% if services %}
+    <div>
+      <h3 class="header_count">{{services|length}} {% if services|length == 1 %}service{% else %}services{% endif %} found</h3>
+      <article class="grid-item">
+        {% for service in services %}
+        <div class="item">
+          <a href="{% url 'service_detail' service.id %}">
+            <img src="{{service.service_image.url}}" alt="{{service.name}}" height="80" width="80">
+          </a>
+          <h4 class="item-title">
+            <a href="{% url 'service_detail' service.id %}">{{service.name}}</a>
+          </h4>
+          {% if service.price %}
+          <p class="price">&#x20A6;{{service.price|format_with_commas}}</p>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </article>
+    </div>
+    {% endif %}
+    <!-- for subservices -->
+    {% if subservices %}
+    <div>
+      <h3 class="header_count">{{subservices|length}} {% if subservices|length == 1 %}sub service{% else %}sub services{% endif %} found</h3>
+      <article class="grid-item">
+        {% for subservice in subservices %}
+        <div class="item">
+          <a href="{% url 'service_detail' subservice.service.id %}">
+            <img src="{{subservice.image.url}}" alt="{{subservice.name}}" height="80" width="80">
+          </a>
+          <h4 class="item-title">
+            <a href="{% url 'service_detail' subservice.service.id %}">{{subservice.name}}</a>
+          </h4>
+          <p class="price">&#x20A6;{{subservice.price|format_with_commas}}</p>
+          <i class="font-xsm">for {{subservice.service}}</i>
+        </div>
+        {% endfor %}
+      </article>
+    </div>
+    {% endif %}
+  </section>
+  <article>
+    {% if not services and not products and not subservices%}
+    <h2 class="text-center">No Item found</h2>
+    {% endif %}
+  </article>
+</section>
+{% endblock main-content %}
+  </body>
+</html>
