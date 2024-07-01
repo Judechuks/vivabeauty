@@ -5,7 +5,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_view
 from .forms import LoginForm, CustomerPasswordResetForm, CustomerPasswordChangeForm, CustomerSetPasswordForm
-
+from django.contrib import admin
 urlpatterns = [
   path('', views.home),
   path('products/', views.all_product_list, name='all_products'),
@@ -46,4 +46,10 @@ urlpatterns = [
   path('checkout', views.checkout.as_view(), name='checkout'),
   path('make_payment', views.make_payment, name='make_payment'),
   path('verify_payment<str:ref>/', views.verify_payment, name='verify_payment'),
+  path('search/', views.search, name='search'),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # to include the url to the upload images in the media folder
+
+# changing the admin dashboard name from Django administration to a custom name
+admin.site.site_header = 'Viva Beauty Home'
+admin.site.site_title = 'Viva Beauty'
+admin.site.site_index_title = 'Welcome to Viva Beauty Home'
