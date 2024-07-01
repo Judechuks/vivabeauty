@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.views import View
-from .models import ProductCategory, Product, Contact, ServiceCategory, Service, Customer, Cart, Payment, Order, Wishlist
+from .models import ProductCategory, Product, Contact, ServiceCategory, Service, Customer, Cart, Payment, Order, Wishlist, Subservice
 from . forms import CustomerRegistrationForm, CustomerProfileForm
 from django.contrib import messages
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.db.models import Q # multiple filter condition
 from django.conf import settings
 
@@ -129,6 +130,7 @@ class customerRegistrationView(View):
     return redirect('/accounts/login')
 
 # profile view
+@method_decorator(login_required, name='dispatch')
 class ProfileView(View):
   def get(self, request):
     form = CustomerProfileForm()  
@@ -159,6 +161,7 @@ def profile_details(request):
   return render(request, 'app/profile_details.html', locals())
 
 # update_profile view
+@method_decorator(login_required, name='dispatch') # update profile only when logged in
 class ProfileUpdate(View):
   def get(self, request): 
     details = Customer.objects.get(user=request.user) # get the current logged in user
@@ -257,6 +260,7 @@ def remove_cart(request):
     return JsonResponse(data)
 
 # checkout
+@method_decorator(login_required, name='dispatch') # checkout only when logged in
 class checkout(View):
   def get(self, request):
     user = request.user
@@ -271,6 +275,7 @@ class checkout(View):
     return render(request, 'app/checkout.html', locals())
   
 # make payment
+@login_required
 def make_payment(request):
     user = request.user
     email = request.user.email
@@ -290,6 +295,7 @@ def make_payment(request):
     return render(request, 'app/make_payment.html', locals())
 
 # verify payment
+@login_required
 def verify_payment(request, ref):
   try:
     user = request.user
@@ -311,6 +317,7 @@ def verify_payment(request, ref):
     return JsonResponse({'error_message': 'Payment not found.'})
   
 # orders
+@login_required # for users to access orders, they must be logged in
 def orders(request):
   user=request.user
   orders = Order.objects.filter(user=user)
@@ -339,3 +346,11 @@ def remove_wishlist(request):
       'message': 'Product removed from wishlist.',
     }
     return JsonResponse(data)
+
+# search
+def search(request):
+  query = request.GET['search']
+  products = Product.objects.filter(Q(title__icontains=query))
+  services = Service.objects.filter(Q(name__icontains=query))
+  subservices = Subservice.objects.filter(Q(name__icontains=query))
+  return render(request, 'app/search.html', locals())
