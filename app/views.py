@@ -51,7 +51,9 @@ def product_list(request, category_id):
 # product detail view
 def product_detail(request, product_id):
   product = Product.objects.get(pk=product_id)
-  wishlist = Wishlist.objects.filter(Q(product=product) & Q(user=request.user)) # check if wishlist exists
+  wishlist = {}
+  if request.user.is_authenticated:
+    wishlist = Wishlist.objects.filter(Q(product=product) & Q(user=request.user)) # check if wishlist exists
   # context to pass down the contact and categories information
   context = {'product': product, 'wishlist': wishlist}
   return render(request, 'app/product_detail.html', context)
@@ -125,9 +127,10 @@ class customerRegistrationView(View):
     if form.is_valid():
       form.save()
       messages.success(request, 'Congratulations, account created successfully!')
+      return redirect('/accounts/login')
     else:
-      messages.warning(request, 'Invalid details, try again!')
-    return redirect('/accounts/login')
+      messages.warning(request, 'Invalid details, try again! make sure password is at least 8 characters')
+      return redirect('/registration')
 
 # profile view
 @method_decorator(login_required, name='dispatch')
@@ -347,6 +350,13 @@ def remove_wishlist(request):
     }
     return JsonResponse(data)
 
+# show wishlist
+@login_required # for users to access the wishlist, they must be logged in
+def show_wishlist(request):
+  user = request.user
+  wishlists = Wishlist.objects.filter(user=user)
+  return render(request, 'app/wishlist.html', locals()) # wishlist page
+
 # search
 def search(request):
   query = request.GET['search']
@@ -354,3 +364,7 @@ def search(request):
   services = Service.objects.filter(Q(name__icontains=query))
   subservices = Subservice.objects.filter(Q(name__icontains=query))
   return render(request, 'app/search.html', locals())
+
+# booking
+def booking(request):
+  return redirect('/services')
