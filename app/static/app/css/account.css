@@ -70,12 +70,12 @@ form {
   color: var(--white-clr);
 }
 .alert-success {
-  background-color: rgb(2, 53, 2);
-  color: rgb(13, 255, 13);
+  color: rgb(2, 53, 2);
+  background-color: rgb(13, 255, 13, 0.3);
 }
 .alert-warning {
-  background-color: rgb(53, 2, 2);
-  color: rgb(255, 13, 13);
+  color: rgb(53, 2, 2);
+  background-color: rgb(255, 13, 13, 0.3);
 }
 .form-col .error-msg {
   color: rgb(255, 13, 13);
