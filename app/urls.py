@@ -42,11 +42,13 @@ urlpatterns = [
   path('remove_cart', views.remove_cart),
   path('add_wishlist', views.add_wishlist),
   path('remove_wishlist', views.remove_wishlist),
+  path('wishlist', views.show_wishlist, name='show_wishlist'),
   path('orders', views.orders, name='orders'),
   path('checkout', views.checkout.as_view(), name='checkout'),
   path('make_payment', views.make_payment, name='make_payment'),
   path('verify_payment<str:ref>/', views.verify_payment, name='verify_payment'),
   path('search/', views.search, name='search'),
+  path('booking/', views.booking, name='booking'),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # to include the url to the upload images in the media folder
 
 # changing the admin dashboard name from Django administration to a custom name
