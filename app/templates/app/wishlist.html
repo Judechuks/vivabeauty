@@ -1,0 +1,44 @@
+<!-- inheriting the codes, links, etc from the base.html -->
+{% extends 'app/base.html' %}
+
+<!-- loading static files -->
+{% load static %}
+
+<!-- loading custom_filter for price -->
+{% load custom_filters %}
+
+<!-- document title -->
+{% block title %}Viva Beauty Home | Saved Items{% endblock title %}
+
+<!-- Payment page -->
+{% block main-content %}
+<section class="section-top-padding">
+  <section class="search-container">
+    <!-- for products -->
+    {% if wishlists %}
+    <div>
+      <h3 class="header_count">{{wishlists|length}} {% if wishlists|length == 1 %}product{% else %}products{% endif %} saved</h3>
+      <article class="grid-item">
+        {% for wishlist in wishlists %}
+        <div class="item">
+          <a href="{% url 'product_detail' wishlist.product.id %}">
+            <img src="{{wishlist.product.product_image.url}}" alt="{{product.title}}" height="80" width="80">
+          </a>
+          <h4 class="item-title">
+            <a href="{% url 'product_detail' wishlist.product.id %}">{{wishlist.product.title}}</a>
+          </h4>
+          <p class="price">&#x20A6;{{wishlist.product.discounted_price|format_with_commas}}</p>
+        </div>
+        {% endfor %}
+      </article>
+    </div>
+    {% else %}
+    <article>
+      <h2 class="text-center">No Item saved yet</h2>
+    </article>
+    {% endif %}
+  </section>
+</section>
+{% endblock main-content %}
+  </body>
+</html>
