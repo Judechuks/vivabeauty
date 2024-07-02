@@ -1,5 +1,8 @@
 from django.contrib import admin
 from . models import ProductCategory, Product, Contact, ServiceCategory, Service, Subservice, WorkSampleImage, Customer, Cart, Payment, Order, Wishlist
+from django.utils.html import format_html
+from django.urls import reverse
+# from django.contrib.auth.models import Group
 
 # Register your models here.
 # Category model
@@ -71,8 +74,12 @@ class CustomerModelAdmin(admin.ModelAdmin):
 @admin.register(Cart) # registers the cart model
 class CartModelAdmin(admin.ModelAdmin):
 # fields to be displayed in the admin dashboard
-  list_display = ['id', 'user', 'product', 'quantity']
+  list_display = ['id', 'user', 'products', 'quantity'] # products for the products function
   list_display_links = ['id', 'user']
+  # link from cart to products section from the admin dashboard when a product is clicked
+  def products(self, obj):
+    link = reverse('admin:app_product_change', args=[obj.product.pk])
+    return format_html('<a href="{}">{}</a>', link, obj.product.title)
 
 # Payment model
 @admin.register(Payment) # registers the Payment model
@@ -86,13 +93,27 @@ class PaymentModelAdmin(admin.ModelAdmin):
 @admin.register(Order) # registers the Order model
 class OrderModelAdmin(admin.ModelAdmin):
 # fields to be displayed in the admin dashboard
-  list_display = ['id', 'customer', 'ordered_date', 'total_cost', 'status', 'payment']
-  list_display_links = ['id', 'customer', 'ordered_date']
+  list_display = ['id', 'product', 'customers', 'ordered_date', 'total_cost', 'status', 'payments']  # products for the products function
+  list_display_links = ['id', 'product', 'ordered_date']
   list_filter = ['customer', 'ordered_date']
+  # link from order to products section from the admin dashboard when a product is clicked
+  def customers(self, obj):
+    link = reverse('admin:app_customer_change', args=[obj.customer.pk])
+    return format_html('<a href="{}">{}</a>', link, obj.customer.full_name)
+  def payments(self, obj):
+    link = reverse('admin:app_payment_change', args=[obj.payment.pk])
+    return format_html('<a href="{}">{}</a>', link, obj.payment.id)
 
 # Wishlist model
 @admin.register(Wishlist) # registers the Wishlist model
 class WishlistModelAdmin(admin.ModelAdmin):
 # fields to be displayed in the admin dashboard
-  list_display = ['id', 'user', 'product']
+  list_display = ['id', 'user', 'products'] # products for the products function
   list_display_links = ['id', 'user']
+  # link from wishlist to products section from the admin dashboard when a product is clicked
+  def products(self, obj):
+    link = reverse('admin:app_product_change', args=[obj.product.pk])
+    return format_html('<a href="{}">{}</a>', link, obj.product.title)
+  
+# To remove the authenticated Group in the admin dashboard
+# admin.site.unregister(Group)
